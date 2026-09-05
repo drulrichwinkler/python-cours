@@ -4,3 +4,8 @@ __pycache__/
 .pytest_cache/
 .ruff_cache/
 .DS_Store
+
+# Planning notes: the didactic review, the course structure and the LPTHW gap
+# list. Author's working material, in German -- deliberately not published in the
+# students' repository. Kept locally.
+docs/
