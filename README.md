@@ -1,9 +1,9 @@
-# Python-Grundkurs
+# Python-Grundkurs — Übungsprojekt
 
-**Von Null bis zur eigenen Anwendung.** 26 Module in sechs Teilen — vom ersten `print()` bis zu
-einer Webseite, einer API und einem Fenster, die dieselben Messdaten anzeigen.
+**Ein reines Übungsprojekt.** Keine Folien, keine Vorlesung, kein Termin. Sie arbeiten allein,
+in Ihrem Tempo, und der Rechner sagt Ihnen, ob es stimmt.
 
-> **Für wen ist dieser Kurs?** Für Menschen, die noch nie programmiert haben. Er beginnt bei
+> **Für wen ist das?** Für Menschen, die noch nie programmiert haben. Es beginnt bei
 > „Was ist eine Variable?" und endet bei einer Anwendung, die Sie vorzeigen können — Webseite,
 > API, Datenauswertung, Fenster. **Wenn Sie schon programmieren können** — C, Java, C++ — und
 > nur Python brauchen, sparen Sie hier Wochen: Nehmen Sie stattdessen *Python für Umsteiger*.
@@ -12,35 +12,55 @@ einer Webseite, einer API und einem Fenster, die dieselben Messdaten anzeigen.
 
 ## Loslegen
 
-Sie brauchen zwei Dinge: **[uv](https://docs.astral.sh/uv/)** und **[VS Code](https://code.visualstudio.com/)**.
+Sie brauchen **[uv](https://docs.astral.sh/uv/)** und **[VS Code](https://code.visualstudio.com/)**.
+Python holt `uv` selbst.
 
 ```bash
 git clone <dieses-repository>
 cd 2026-python-grundkurs
 uv sync
-uv run 01_grundlagen/entdecken.py
 ```
 
-Läuft das durch und endet mit `-- Ende von entdecken.py --`, ist Ihre Umgebung in Ordnung.
-Wenn nicht: Modul 01, Folie 6 erklärt, wie man die Fehlermeldung liest.
+Prüfen, ob alles steht:
 
-## Wie Sie mit einem Modul arbeiten
+```bash
+uv run python -c "from kurs import pruefe; pruefe('ok', '2689367b205c16ce32ed4200942b8b8b1e262dfc70d9bc9fbc77c49699a4f1df')"
+```
 
-Jedes Modul ist ein Ordner. Die Reihenfolge ist gedacht als:
+Erscheint `✅ Richtig: ok`, kann es losgehen.
 
-| | Datei | wann |
-|---|---|---|
-| 1 | `entdecken.md` | **vor** der Sitzung ausdrucken — der Vorhersagezettel |
-| 2 | `entdecken.py` | erst die Vorhersagen hinschreiben, **dann** `uv run` |
-| 3 | `folien.md` | in der Sitzung |
-| 4 | `uebungen/aufgaben.md` | danach, selbst |
-| 5 | `uebungen/loesungen.py` | **zuletzt**, zum Vergleichen |
+## Wie ein Modul funktioniert
 
-`OUTLINE.md` sagt, was Sie nach dem Modul können sollen. `praesenz.md` ist für die Lehrperson.
+Jedes Modul ist ein Ordner mit derselben Struktur:
 
-**Die Reihenfolge ist der Punkt.** Wer erst die Lösung liest, erlebt Verstehen, ohne etwas zu
-können. Schreiben Sie jede Vorhersage hin, bevor Sie ausführen — auch wenn Sie sich unsicher sind.
-Besonders dann.
+| Datei | was Sie damit tun |
+|---|---|
+| `OUTLINE.md` | zuerst lesen — was Sie danach können sollen |
+| `entdecken.ipynb` | **Schritt 1:** vorhersagen, prüfen lassen, dann ausführen |
+| `uebungen/aufgabe_*.py` | **Schritt 2:** ausfüllen, bis die erwartete Ausgabe erscheint |
+| `uebungen/aufgaben.md` | die Aufgaben zum Nachdenken, mit gestuften Hinweisen |
+| `uebungen/loesungen.py` | **zuletzt**, zum Vergleichen |
+
+```bash
+uv run jupyter lab                          # Notebook öffnen
+uv run 01_grundlagen/uebungen/aufgabe_1.py  # Aufgabe ausführen
+```
+
+## Woran Sie merken, dass Sie fertig sind
+
+Das ist die Frage, die ein Selbstlernkurs beantworten muss — hier auf drei Wegen:
+
+- **Im Notebook** tragen Sie Ihre Vorhersage ein und `pruefe()` sagt ✅ oder ❌. Die Antwort
+  steht nirgends im Klartext, nur als Prüfsumme. Sie können also nicht versehentlich spicken
+  und bekommen trotzdem sofort Rückmeldung.
+- **In jeder Aufgabendatei** steht im Kopf die **erwartete Ausgabe**. Trifft Ihr Programm sie,
+  ist die Aufgabe erledigt.
+- **Bei den Denkaufgaben** steht eine Zeile *Selbstkontrolle*: woran eine gute Antwort erkennbar
+  ist, ohne sie vorwegzunehmen.
+
+**Raten Sie, statt zu überspringen.** Eine falsche Vorhersage ist der Zweck der Übung — sie
+zeigt genau die Stelle, an der Ihre Vorstellung vom Rechner abweicht. Wer erst die Lösung liest,
+erlebt Verstehen, ohne etwas zu können.
 
 ## Aufbau
 
@@ -53,21 +73,14 @@ Besonders dann.
 | 5 | 20–25 | Ausflüge: Flask, Streamlit, FastAPI, Tkinter, Textual |
 | 6 | 26 | Abschlussprojekt |
 
-Teil 1–3 bilden den **Grundkurs**, Teil 4–6 den **Aufbaukurs**. Der vollständige Zuschnitt mit
-Begründungen steht in [`docs/GRUNDSTRUKTUR-grundkurs.md`](docs/GRUNDSTRUKTUR-grundkurs.md).
-
 **Ein roter Faden zieht sich durch:** ein Sensor-Logfile. Es wird gelesen (08), getestet (15),
-über HTTP geholt (16), mit Pandas ausgewertet (18), in SQLite gespeichert (19) — und dann fünfmal
-angezeigt: als Webseite, als Datenapp, als API, als Fenster, als Terminal-Oberfläche.
+über HTTP geholt (16), mit Pandas ausgewertet (18), in SQLite gespeichert (19) — und dann
+fünfmal angezeigt: als Webseite, als Datenapp, als API, als Fenster, als Terminal-Oberfläche.
 
-## Umgebung
-
-**Editor und Terminal**, nicht Notebook. Jupyter kommt in Modul 18 dazu, wo es zum ersten Mal
-etwas nützt — bei einem Datensatz, dessen Einlesen 40 Sekunden dauert und den man danach
-hundertmal befragt. Im ganzen Kurs gibt es genau zwei Notebooks: Modul 18 und Modul 19.
-
-Ab Modul 15 ist `uv run pytest` der Rückkanal. Davor steht unter jeder Aufgabe eine Zeile
-**Erwartete Ausgabe** — damit Sie ohne Nachfrage wissen, ob Sie fertig sind.
+Die Begründung des Zuschnitts steht in
+[`docs/GRUNDSTRUKTUR-grundkurs.md`](docs/GRUNDSTRUKTUR-grundkurs.md). **Achtung:** Dieses
+Dokument beschreibt noch den ursprünglichen Plan als Präsenzkurs mit Folien; der Kopf der Datei
+sagt, was davon nach dem Umbau zum Übungsprojekt noch gilt.
 
 ## Stand
 
@@ -75,4 +88,4 @@ Ab Modul 15 ist `uv run pytest` der Rückkanal. Davor steht unter jeder Aufgabe 
 |---|---|
 | 01 Grundlagen | ✅ vollständig |
 | 02 Operatoren | ✅ vollständig |
-| 03–26 | ⬜ geplant, siehe `docs/GRUNDSTRUKTUR-grundkurs.md` Abschnitt 10 |
+| 03–26 | ⬜ geplant |

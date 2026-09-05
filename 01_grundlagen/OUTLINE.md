@@ -1,41 +1,36 @@
 # Modul 01 — Python-Grundlagen
 
-**Umfang:** 2 Blöcke à 90 min · **Setzt voraus:** nichts · **Artefakte:** `entdecken.py`,
-`entdecken.md`, `folien.md`, `uebungen/`
+**Dauer:** etwa 2 Stunden · **Setzt voraus:** nichts · **Rückkanal:** `entdecken.ipynb` sagt
+grün oder rot, jede Aufgabendatei nennt ihre erwartete Ausgabe
 
-**Modulcode / Semester / Prüfungsform:** noch nicht festgelegt (siehe
-`docs/GRUNDSTRUKTUR-grundkurs.md` Abschnitt 11). Die Lernziele unten sind auf Bloom-Stufe 2–3
-formuliert und tragen unter beiden zur Debatte stehenden Lesarten.
+## Worum es geht
 
-## Lernziele
+Variablen, die vier Grundtypen, Ein- und Ausgabe — und die zwei Fallen, über die jeder stolpert:
+`bool("False")` und `0.1 + 0.2`. Dazu die Fertigkeit, die im Rest des Kurses am meisten trägt:
+**eine Fehlermeldung lesen**.
 
-Nach diesem Modul können Sie:
+## Was Sie danach können
 
-1. einen Projektordner anlegen, eine `.py`-Datei darin speichern und sie mit `uv run`
-   **ausführen** — ohne Anleitung;
+1. eine `.py`-Datei anlegen und mit `uv run` **ausführen**;
 2. eine Python-Fehlermeldung **lesen** und die verursachende Zeile benennen;
-3. für ein gegebenes Codestück mit Variablen, Zahlen und Strings die Ausgabe **vorhersagen**,
+3. für ein Codestück mit Variablen, Zahlen und Strings die Ausgabe **vorhersagen**,
    ohne es auszuführen;
 4. `int`, `float`, `str`, `bool` und `None` **unterscheiden** und begründen, warum
    `int("3.5")` scheitert, `int(3.5)` aber nicht;
 5. eine formatierte Ausgabe mit f-Strings **erzeugen**.
 
-Nicht enthalten: „Python verstehen", „sich mit Datentypen beschäftigen". Wenn Sie eines der
-fünf Ziele nicht prüfen können, gehört es hier nicht hin.
+Wenn Sie eines davon nicht an einer Aufgabe zeigen können, ist das Modul nicht fertig.
 
-## Schnitt in zwei Blöcke
+## Reihenfolge
 
-| Block | Folien | Titel |
-|---|---|---|
-| 1 | 1–12 | Vom leeren Ordner zum laufenden Programm |
-| 2 | 13–24 | Datentypen, Ein- und Ausgabe |
+1. **`entdecken.ipynb`** — acht Vorhersagen, etwa 30 Minuten. Öffnen mit
+   `uv run jupyter lab` (oder in VS Code direkt anklicken).
+2. **`uebungen/`** — sechs Aufgabendateien zum Ausfüllen, zwei zum Nachdenken in
+   `aufgaben.md`, ein Bonus.
+3. **`uebungen/loesungen.py`** — zuletzt, zum Vergleichen.
 
-**Warum geteilt:** Der Vorgängerstapel hatte ~28 neue Fachbegriffe in einem Block; die
-Rastergrenze liegt bei ~15 (Gutachten, Prio A). Gestrichen wurden dabei *Duck Typing* und
-*PEP 8* — beides sind ohne Vorwissen leere Vokabeln.
+## Noch nicht erlaubt
 
-## Nachbereitung — genau eine Sache
-
-**Auftrag:** Schreiben Sie ein Skript `steckbrief.py`, das Ihren Namen, Ihr Geburtsjahr und Ihre
-Körpergröße in Variablen ablegt und daraus mit **einem** f-String einen Satz ausgibt.
-**Abgabe:** die Datei, im Kursordner, bis zur nächsten Sitzung.
+`if`, `else`, Schleifen und eigene Funktionen. Die kommen in Modul 03 und 04. Alle Aufgaben hier
+lassen sich ohne sie lösen — wenn Sie das Gefühl haben, ein `if` zu brauchen, fehlt Ihnen ein
+Ausdruck, kein Sprachmittel.
