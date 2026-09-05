@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 # Runs once, after the container is created.
 #
+# Verified on 2026-09-05 with Docker 29.1.3 and @devcontainers/cli:
+# container builds, this script completes, and inside it mypy, ruff and all
+# three notebooks pass. Python in the image was 3.12.11.
+#
 # Everything the course needs is installed here, so a fresh container is ready
 # to work in: no "pip install", no manual virtual environment.
 set -euo pipefail
