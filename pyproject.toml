@@ -1,0 +1,25 @@
+[project]
+name = "python-grundkurs"
+version = "2026.1"
+description = "Python-Grundkurs: von Null bis zur eigenen Anwendung"
+requires-python = ">=3.12"
+dependencies = []
+
+[dependency-groups]
+dev = [
+    "pytest>=8.0",
+    "ruff>=0.6",
+]
+
+[tool.ruff]
+line-length = 100
+# Markdown ausnehmen: In folien.md ist die Ausrichtung von Kommentaren Absicht (Lesbarkeit
+# an der Wand), und Folie 15 zeigt bewusst 'einfache' NEBEN "doppelten" Anfuehrungszeichen.
+# Der Formatierer wuerde beides vereinheitlichen und damit das Beispiel zerstoeren.
+extend-exclude = ["*.md"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP"]
+# UP003 ersetzt type(42) durch int. In einem Lehrmaterial ist type(<literal>) aber
+# genau der Punkt: Modul 01 zeigt damit, dass der Typ am Wert haengt und nicht am Namen.
+ignore = ["UP003"]

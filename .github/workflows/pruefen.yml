@@ -1,0 +1,23 @@
+name: pruefen
+
+on: [push, pull_request]
+
+jobs:
+  pruefen:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+      - run: uv sync
+
+      # Das Tier-3-Gate: Jedes Vorbereitungsskript und jede Loesung muss
+      # von oben nach unten durchlaufen. Kein nbconvert, kein Kernel noetig.
+      - name: Vorbereitungsskripte und Loesungen laufen lassen
+        run: |
+          for f in */entdecken.py */uebungen/loesungen.py; do
+            echo "--- $f"
+            uv run "$f" > /dev/null
+          done
+
+      - run: uv run ruff check .
+      - run: uv run ruff format --check .
