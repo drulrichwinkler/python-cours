@@ -93,6 +93,5 @@ over: as a web page, a data app, an API, a desktop window and a terminal interfa
 | 02 Operators | ✅ complete |
 | 03–26        | ⬜ planned  |
 
-The design rationale lives in [`docs/`](docs/) — in German, and written before the course was
-turned into a practice project. The header of `docs/GRUNDSTRUKTUR-grundkurs.md` says which parts
-still hold.
+Modules are added in order. If something in an existing one is wrong, unclear or simply
+annoying, open an issue — that is the fastest way for the course to get better.
