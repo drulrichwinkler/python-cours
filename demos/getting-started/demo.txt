@@ -1,0 +1,85 @@
+#fehler_ok failed
+#fehler_ok FAILED
+#fehler_ok AssertionError
+
+#header A fresh clone
+#voice This is how a student starts. Nothing is installed on the machine except Docker; everything else travels with the repository.
+git clone https://github.com/drulrichwinkler/python-cours.git
+#voice One repository holds the modules, the exercises, the tests, and the definition of the development environment itself.
+cd python-cours
+ls
+#voice Three module folders so far, a helper package called course, and pyproject dot toml, which pins every tool version.
+
+#header What the course says about itself
+#voice We open the README in an editor rather than dumping it to the screen, because that is what you would really do.
+nano README.md
+#pause 6
+#raw C-x
+
+#header The container definition
+#voice This file declares the image, the editor extensions and a setup script. Nobody installs Python by hand.
+nano .devcontainer/devcontainer.json
+#pause 7
+#raw C-x
+
+#header Bringing the environment up
+#voice devcontainer up reads that file, starts the container, and runs the setup script inside it. The script installs uv and synchronises the environment.
+devcontainer up --workspace-folder .
+#pause 30
+#say The setup runs the tests itself before it reports ready.
+
+#header A shorter way to type it
+#voice Inside VS Code you would open a terminal in the container and type nothing extra. From outside, devcontainer exec runs a command in it, so we give that a short name.
+alias dc='devcontainer exec --workspace-folder .'
+
+#header What is installed, and what for
+#voice Python itself, pinned to three point twelve by the container image and by the project file.
+dc uv run python --version
+#voice uv manages Python and every package. It replaces pip, virtualenv and requirements files, and it is fast enough that you stop thinking about it.
+dc uv --version
+#voice ruff is linter and formatter in one. It replaces flake8, black and isort, and it reads its settings from pyproject dot toml.
+dc uv run ruff --version
+#voice mypy is the type checker. It reads the type hints and tells you when a promise in the code is broken, before the program ever runs.
+dc uv run mypy --version
+#voice pytest runs the tests. Every exercise in this course has one.
+dc uv run pytest --version
+
+#header Red is the starting position
+#voice Every exercise has two tests. One belongs to the model solution and is always green. The other is yours, and it stays red until you have finished.
+dc uv run pytest 00_setup -q
+#say One failure and one pass. That is correct, not broken.
+
+#header The exercise, and solving it
+#voice The file states the task, the expected output and one hint. Everything you need is in the file itself.
+nano 00_setup/exercises/exercise_01.py
+#pause 9
+#voice We search for the line rather than scrolling to it. TODO appears exactly once in this file; the words return zero point zero appear twice, so they would be the wrong thing to search for.
+#raw C-w
+#type TODO
+#raw Enter
+#pause 2
+#raw C-a
+#raw C-k
+#voice Fahrenheit is Celsius times nine fifths, plus thirty two.
+#type     return celsius * 9 / 5 + 32
+#pause 3
+#raw C-o
+#pause 1
+#raw Enter
+#pause 2
+#raw C-x
+#pause 2
+#say The folder is mounted, so the container sees the change at once.
+
+#header The three checks
+#voice First the tests. Does it compute the right thing?
+dc uv run pytest 00_setup -q
+#voice Then the types. mypy reads the signature and checks that the function really hands back a number.
+dc uv run mypy
+#voice And the style. Three greens mean done, with nobody to ask.
+dc uv run ruff check .
+
+#header Where to go next
+#voice Module 01 works the same way. A notebook to explore, exercises to fill in, and tests that tell you when you are finished.
+ls 01_basics
+#say Next: 01_basics/README.md
