@@ -1,0 +1,34 @@
+name: check
+
+on: [push, pull_request]
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+      - run: uv sync
+
+      # Every model solution must pass the same test its exercise does.
+      # The `your_turn` tests are excluded -- they are meant to be red in a fresh clone.
+      - name: Tests (model solutions)
+        run: uv run pytest -m "not your_turn"
+
+      - name: Types
+        run: uv run mypy
+
+      - name: Lint
+        run: uv run ruff check .
+
+      - name: Format
+        run: uv run ruff format --check .
+
+      # Every explore notebook must run top to bottom.
+      # Cells that fail on purpose carry the `raises-exception` tag.
+      - name: Notebooks
+        run: |
+          for f in */explore.ipynb; do
+            echo "--- $f"
+            uv run jupyter nbconvert --to notebook --execute --stdout "$f" > /dev/null
+          done

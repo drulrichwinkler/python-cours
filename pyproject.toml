@@ -1,7 +1,7 @@
 [project]
-name = "python-grundkurs"
+name = "python-course"
 version = "2026.1"
-description = "Python-Grundkurs: von Null bis zur eigenen Anwendung"
+description = "Python course: from zero to an application you can show"
 requires-python = ">=3.12"
 dependencies = []
 
@@ -10,7 +10,7 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [tool.hatch.build.targets.wheel]
-packages = ["kurs"]
+packages = ["course"]
 
 [dependency-groups]
 dev = [
@@ -18,17 +18,32 @@ dev = [
     "ruff>=0.6",
     "jupyterlab>=4.0",
     "nbclient>=0.10",
+    "mypy>=1.11",
 ]
 
 [tool.ruff]
 line-length = 100
-# Markdown ausnehmen: In folien.md ist die Ausrichtung von Kommentaren Absicht (Lesbarkeit
-# an der Wand), und Folie 15 zeigt bewusst 'einfache' NEBEN "doppelten" Anfuehrungszeichen.
-# Der Formatierer wuerde beides vereinheitlichen und damit das Beispiel zerstoeren.
+# Exclude markdown: exercise sheets show 'single' next to "double" quotes on purpose,
+# and the formatter would unify them and destroy the example.
 extend-exclude = ["*.md"]
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "UP"]
-# UP003 ersetzt type(42) durch int. In einem Lehrmaterial ist type(<literal>) aber
-# genau der Punkt: Modul 01 zeigt damit, dass der Typ am Wert haengt und nicht am Namen.
+# UP003 rewrites type(42) to int. In teaching material type(<literal>) is the whole
+# point: module 01 uses it to show that the type belongs to the value, not the name.
 ignore = ["UP003"]
+
+[tool.pytest.ini_options]
+addopts = "--import-mode=importlib"
+testpaths = ["00_setup", "01_basics", "02_operators"]
+markers = [
+    "your_turn: checks YOUR solution -- red until you have finished the exercise",
+]
+
+[tool.mypy]
+python_version = "3.12"
+# Type checking runs on the helper package and on module 00, where type hints are
+# introduced as a tool. Modules 01-03 have no annotations yet -- type hints are
+# taught properly in module 04, and the checked set grows from there.
+files = ["course", "00_setup"]
+strict = true
