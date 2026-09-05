@@ -3,8 +3,9 @@
 **A practice project.** You work on your own, at your own
 pace, and the machine tells you whether it is right.
 
-> **Who is this for?** People who have never programmed. It starts at "what is a variable?" and
+> **Who is this for?** People who have never programmed in python. It starts at "what is a variable?" and
 > ends with an application you can show — a web page, an API, a data analysis, a window.
+>
 > **If you can already program** — C, Java, C++ — and only need Python, you will save weeks by
 > taking _Python for Switchers_ instead.
 
@@ -14,6 +15,12 @@ on one tiny example.
 ---
 
 ## Quick start
+
+**Nothing to install:** open the repository in **GitHub Codespaces**, or in VS Code with the
+*Dev Containers* extension and *Reopen in Container*. Python, uv and every tool are set up for
+you; when the setup finishes it prints the first command to run. Takes a few minutes once.
+
+**On your own machine:**
 
 ```bash
 git clone <this-repository>

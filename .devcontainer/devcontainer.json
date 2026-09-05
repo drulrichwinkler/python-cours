@@ -1,0 +1,52 @@
+{
+  "name": "Python Course 2026",
+
+  // Microsoft's Python image. The tag pins Python 3.12 -- the same version
+  // .python-version and pyproject.toml ask for.
+  "image": "mcr.microsoft.com/devcontainers/python:1-3.12-bookworm",
+
+  "features": {
+    "ghcr.io/devcontainers/features/github-cli:1": {}
+  },
+
+  // The virtual environment lives in a named volume rather than in the mounted
+  // workspace. Two reasons: a .venv built on macOS or Windows contains binaries
+  // that cannot run inside Linux, and package installs are much faster on a
+  // volume than across a bind mount.
+  "mounts": [
+    "source=python-course-venv,target=${containerWorkspaceFolder}/.venv,type=volume"
+  ],
+
+  "containerEnv": {
+    // Recommended by Astral for containers: without it uv warns on every install
+    // because hardlinks cannot cross the cache/venv filesystem boundary.
+    "UV_LINK_MODE": "copy"
+  },
+
+  "postCreateCommand": "bash .devcontainer/setup.sh",
+
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "ms-python.mypy-type-checker",
+        "charliermarsh.ruff",
+        "ms-toolsai.jupyter"
+      ],
+      "settings": {
+        "python.defaultInterpreterPath": "${containerWorkspaceFolder}/.venv/bin/python",
+        "python.testing.pytestEnabled": true,
+        "python.testing.pytestArgs": ["."],
+        "editor.formatOnSave": true,
+        "[python]": {
+          "editor.defaultFormatter": "charliermarsh.ruff"
+        },
+        "notebook.formatOnSave.enabled": true,
+        "files.trimTrailingWhitespace": true
+      }
+    }
+  },
+
+  "remoteUser": "vscode"
+}

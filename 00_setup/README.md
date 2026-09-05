@@ -5,6 +5,19 @@
 This module teaches no Python. It is a walk through the tools, on one tiny example, so that in
 module 01 you can think about the language instead of about your editor.
 
+## Two ways to get started
+
+**A — In a container (nothing to install).** Open the repository in **GitHub Codespaces**, or
+locally in VS Code with the *Dev Containers* extension and **Reopen in Container**. Python 3.12,
+`uv`, the editor extensions and the course environment are all set up for you. The setup runs
+once, ends by running the tests, and prints the first command. Skip to *Order of work* below.
+
+Use this if installing things on your machine is awkward — a locked-down work laptop, for
+instance, or simply a first week you would rather spend on Python than on `PATH` problems.
+
+**B — On your own machine.** Two programs to install, described next. Worth doing at some point:
+what you learn here you will use on every Python project afterwards.
+
 ## What you need
 
 Two programs. Everything else is handled for you.
