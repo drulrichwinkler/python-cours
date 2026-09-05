@@ -13,8 +13,13 @@
   // workspace. Two reasons: a .venv built on macOS or Windows contains binaries
   // that cannot run inside Linux, and package installs are much faster on a
   // volume than across a bind mount.
+  //
+  // ${devcontainerId} makes the volume name unique per dev container and stable
+  // across rebuilds. Without it every checkout would share one volume -- and a
+  // virtual environment is not relocatable: its console scripts carry an absolute
+  // shebang, so a .venv built for /workspaces/a breaks under /workspaces/b.
   "mounts": [
-    "source=python-course-venv,target=${containerWorkspaceFolder}/.venv,type=volume"
+    "source=course-venv-${devcontainerId},target=${containerWorkspaceFolder}/.venv,type=volume"
   ],
 
   "containerEnv": {
