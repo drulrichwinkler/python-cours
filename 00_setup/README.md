@@ -82,6 +82,16 @@ Before you fill anything in you will see **one failure and one pass**. That is c
 failing test is yours, the passing one belongs to the model solution. **Red is the starting
 position, not a problem.**
 
+## Reading the tests
+
+You are meant to open `tests/` and read it. The test says, in code, exactly what your exercise
+has to do — it is the most precise description of the task there is.
+
+It also contains syntax you have not met yet: file paths, decorators, `assert`. **Every one of
+those lines carries a comment explaining what it does**, and that stays true through the early
+modules. You need to be able to *read* those files, not to write them. The ability to write them
+arrives gradually — decorators in module 14, testing itself in module 15.
+
 ## Why this module looks different from the rest
 
 The exercise here defines a *function* with *type hints* — both of which are properly taught in

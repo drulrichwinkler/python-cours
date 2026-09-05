@@ -7,6 +7,7 @@ The other three: 2 + 3 * 4 is 14 (multiplication first), (2 + 3) * 4 is 20, and
 10 - 4 - 3 is 3 because subtraction is evaluated left to right.
 """
 
+# check() compares a prediction against a checksum -- see 00_setup.
 from course import check
 
 check(
@@ -22,6 +23,9 @@ check(
 
 print(2 + 3 * 4)
 print((2 + 3) * 4)
+# The comment `# fmt: skip` tells the code formatter to leave this line alone.
+# Without it the tool would rewrite  2 ** 3 ** 2  as  2**3**2  and  -3 ** 2  as
+# -(3**2) -- correct, but it would give the answer away before you predicted it.
 print(2 ** 3 ** 2)  # fmt: skip
 print(-3 ** 2)  # fmt: skip
 print(10 - 4 - 3)

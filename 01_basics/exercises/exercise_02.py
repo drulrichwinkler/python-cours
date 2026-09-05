@@ -10,6 +10,9 @@ This exercise has no "Expected output" section on purpose: what it checks is you
 prediction, not the program's output.
 """
 
+# check() is a helper of this course. It compares your prediction against a
+# checksum, so it can say right or wrong without the answer being readable
+# anywhere in this repository. `from X import Y` is module 10.
 from course import check
 
 # TODO: replace the dots with your prediction for  type(21.7)

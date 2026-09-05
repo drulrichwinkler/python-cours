@@ -8,6 +8,7 @@ Python. True behaves like 1 in arithmetic, False like 0. You rarely need this,
 but it explains why  True + True  is 2 (see module 02).
 """
 
+# check() compares a prediction against a checksum -- see 00_setup.
 from course import check
 
 check(
