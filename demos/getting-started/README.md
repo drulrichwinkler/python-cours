@@ -3,8 +3,8 @@
 Source for the recorded walkthrough — clone, container, the three checks, and
 exercise 00 solved. Author material, not part of the course itself.
 
-Recorded with [`autodemo`](https://github.com/…) (a private tool): a driver types
-the script into a tmux session character by character while asciinema records.
+Recorded with `autodemo`, a local tool: a driver types the script into a tmux
+session character by character while asciinema records.
 
 ## Recording it again
 
