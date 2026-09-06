@@ -14,7 +14,7 @@ import textwrap
 from pathlib import Path
 from types import ModuleType
 
-__all__ = ["expected_output", "run_file", "assert_output", "assert_predictions", "load_module"]
+__all__ = ["expected_output", "run_file", "assert_output", "assert_runs", "load_module"]
 
 _MARKER = "Expected output:"
 
@@ -70,15 +70,14 @@ def assert_output(path: Path | str, spec_file: Path | str | None = None) -> None
         )
 
 
-def assert_predictions(path: Path | str) -> None:
-    """Assert that every check() in a prediction exercise came out green."""
-    output = run_file(path)
-    if "[ ]" in output:
-        raise AssertionError(f"{Path(path).name}: a prediction is still empty.\n\n{output}")
-    if "[X]" in output:
-        raise AssertionError(f"{Path(path).name}: a prediction is wrong.\n\n{output}")
-    if "[OK]" not in output:
-        raise AssertionError(f"{Path(path).name}: no prediction was checked at all.\n\n{output}")
+def assert_runs(path: Path | str) -> None:
+    """Assert that a file runs to the end without raising.
+
+    Used for the prediction exercises. They are a series of `assert` statements
+    with `...` where the answer goes: unfilled or wrong, the file stops with an
+    AssertionError; right, it finishes silently.
+    """
+    run_file(path)
 
 
 def load_module(path: Path | str) -> ModuleType:

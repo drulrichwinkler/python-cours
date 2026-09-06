@@ -1,7 +1,8 @@
 # Module 01 — Basics
 
-**Time:** about 2 hours · **Assumes:** nothing · **Feedback:** `explore.ipynb` says green or
-red, `uv run pytest 01_basics` says whether your exercises are done
+**Time:** about 2 hours · **Assumes:** nothing · **Feedback:** the predictions in
+`explore.ipynb` fail until they are right, and `uv run pytest 01_basics` says whether your
+exercises are done
 
 ## What this is about
 

@@ -1,31 +1,19 @@
-"""Solution 02 -- Predicting precedence.
+"""Solution 02 -- Predict the precedence.
 
-2 ** 3 ** 2 is 512, because ** is evaluated right to left: 2 ** (3 ** 2) = 2 ** 9.
--3 ** 2 is -9, because ** binds more tightly than the minus sign: -(3 ** 2).
+  2 + 3 * 4     14, because multiplication binds tighter than addition.
+  (2 + 3) * 4   20, because brackets beat everything.
+  2 ** 3 ** 2   512, because ** groups from the RIGHT: 2 ** (3 ** 2) = 2 ** 9.
+                Every other arithmetic operator groups from the left.
+  -3 ** 2       -9, because ** binds tighter than the minus sign: -(3 ** 2).
+                "minus three, squared" would be (-3) ** 2.
+  10 - 4 - 3    3, because subtraction groups from the left: (10 - 4) - 3.
 
-The other three: 2 + 3 * 4 is 14 (multiplication first), (2 + 3) * 4 is 20, and
-10 - 4 - 3 is 3 because subtraction is evaluated left to right.
+The two surprises are both about **. When in doubt, use brackets -- they cost
+nothing and settle the argument for the next reader.
 """
 
-# check() compares a prediction against a checksum -- see 00_setup.
-from course import check
-
-check(
-    "512",
-    "94f8607915dff25f013e45fc0642fb9830b0fb25ab0ab46d477eaf1061def379",
-    "Not (2**3)**2. The other way round.",
-)
-check(
-    "-9",
-    "d5c534fde62beb89c745a59952c8efed8b7523cbd047e682782e4367de9ea3bf",
-    "The power is applied first, the minus afterwards.",
-)
-
-print(2 + 3 * 4)
-print((2 + 3) * 4)
-# The comment `# fmt: skip` tells the code formatter to leave this line alone.
-# Without it the tool would rewrite  2 ** 3 ** 2  as  2**3**2  and  -3 ** 2  as
-# -(3**2) -- correct, but it would give the answer away before you predicted it.
-print(2 ** 3 ** 2)  # fmt: skip
-print(-3 ** 2)  # fmt: skip
-print(10 - 4 - 3)
+assert 2 + 3 * 4 == 14
+assert (2 + 3) * 4 == 20
+assert 2 ** 3 ** 2 == 512  # fmt: skip
+assert -3 ** 2 == -9  # fmt: skip
+assert 10 - 4 - 3 == 3

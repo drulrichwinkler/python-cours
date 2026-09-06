@@ -71,7 +71,9 @@ uv add requests              # add a package (you will need this from module 16)
 
 ## Order of work
 
-1. **`explore.ipynb`** — the guided tour. Open it with `uv run jupyter lab`, or just click the
+1. **`explore.ipynb`** — the guided tour, and where `assert` is introduced: it is how every
+   prediction and every test in this course states what it expects. Open it with
+   `uv run jupyter lab`, or just click the
    file in VS Code. About 20 minutes.
 2. **`exercises/exercise_01.py`** — one line to fill in.
 3. **The three checks**, in this order:

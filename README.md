@@ -61,9 +61,14 @@ uv run ruff check .         # is the style clean?
 `pytest` shows **two tests per exercise**: one for the model solution, which is always green, and
 one for yours, which is red until you finish. Red is the starting position, not a problem.
 
-In the notebooks, `check()` compares your prediction against a checksum. **The answer is not
-written down anywhere in this repository** — you cannot peek by accident, and you still get an
-immediate verdict.
+In the notebooks, predictions are plain `assert` statements with `...` where your answer goes:
+
+```python
+assert 7 // 2 == ...
+```
+
+`...` is a real Python value and never equals a number, so the cell fails until you fill it in.
+**Silence means right.** No hidden machinery, and the same `assert` you will meet in every test.
 
 **Guess rather than skip.** A wrong prediction marks the exact spot where your idea of the
 machine differs from the machine, and that is the only thing worth spending time on.

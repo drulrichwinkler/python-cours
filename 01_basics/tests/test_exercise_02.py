@@ -10,7 +10,7 @@ from pathlib import Path  # Path represents a file path as an object, not as tex
 
 import pytest  # the test runner: it finds every function whose name starts with test_
 
-from course.checks import assert_predictions  # a helper of this course -- see 00_setup
+from course.checks import assert_runs  # runs a file and fails if it raises -- see 00_setup
 
 # __file__ is the path of THIS file. .resolve() turns it into a full path with no
 # ".." in it. .parent goes up one folder -- twice, because this file sits in
@@ -27,7 +27,7 @@ SOLUTION = MODULE / "solutions" / "solution_02.py"
 # pytest finds it. The "-> None" says the function hands nothing back (module 04).
 def test_solution_matches_the_brief() -> None:
     """The model solution must produce exactly what the exercise promises."""
-    assert_predictions(SOLUTION)
+    assert_runs(SOLUTION)
 
 
 # A line starting with @ is a decorator: a label stuck onto the function below it.
@@ -36,4 +36,4 @@ def test_solution_matches_the_brief() -> None:
 @pytest.mark.your_turn
 def test_your_solution() -> None:
     """Red until you have finished the exercise. That is the point."""
-    assert_predictions(EXERCISE)
+    assert_runs(EXERCISE)

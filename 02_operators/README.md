@@ -1,7 +1,8 @@
 # Module 02 — Operators
 
-**Time:** about 1.5 hours · **Assumes:** module 01 · **Feedback:** `explore.ipynb` says green or
-red, `uv run pytest 02_operators` says whether your exercises are done
+**Time:** about 1.5 hours · **Assumes:** module 01 · **Feedback:** the predictions in
+`explore.ipynb` fail until they are right, and `uv run pytest 02_operators` says whether your
+exercises are done
 
 ## What this is about
 

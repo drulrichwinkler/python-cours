@@ -1,29 +1,22 @@
 """Exercise 02 -- Predict the types.
 
-Write down what the four print() lines below produce -- BEFORE you run the file.
-check() tells you whether you are right without revealing the answer.
+Replace each `...` with the type you expect, then run the file.
 
-Hint: write the line exactly as Python prints it, angle brackets and quotes
-included.
+    uv run 01_basics/exercises/exercise_02.py
 
-This exercise has no "Expected output" section on purpose: what it checks is your
+Nothing printed means every prediction was right. An AssertionError names the
+first one that was not, and the line number tells you which.
+
+There is no "Expected output" section here on purpose: what is checked is your
 prediction, not the program's output.
+
+Hint: `type(x) is str` asks "is this value a piece of text?". Every type is
+itself, so `is` is the right comparison -- and the four answers you need are
+`int`, `float`, `str` and `bool`.
 """
 
-# check() is a helper of this course. It compares your prediction against a
-# checksum, so it can say right or wrong without the answer being readable
-# anywhere in this repository. `from X import Y` is module 10.
-from course import check
-
-# TODO: replace the dots with your prediction for  type(21.7)
-check(
-    "...",
-    "ec15c2bad4367dd8e12539fc1cc9b70b3e6f04d8c07fad82072a535827db73f1",
-    "The value is 21.7 -- a number with a decimal point.",
-)
-
-# Only then run this:
-print(type(21.7))
-print(type("21.7"))
-print(type(21))
-print(type(True))
+# TODO: replace each ... with the type you expect
+assert type(21.7) is ...
+assert type("21.7") is ...
+assert type(21) is ...
+assert type(True) is ...
