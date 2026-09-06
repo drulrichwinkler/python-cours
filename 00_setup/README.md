@@ -1,6 +1,6 @@
 # Module 00 — Setup and how this course works
 
-**Time:** about 45 minutes · **Assumes:** nothing at all · **Start here.**
+**Assumes:** you have programmed before, in any language · **Start here.**
 
 This module teaches no Python. It is a walk through the tools, on one tiny example, so that in
 module 01 you can think about the language instead of about your editor.
@@ -74,7 +74,7 @@ uv add requests              # add a package (you will need this from module 16)
 1. **`explore.ipynb`** — the guided tour, and where `assert` is introduced: it is how every
    prediction and every test in this course states what it expects. Open it with
    `uv run jupyter lab`, or just click the
-   file in VS Code. About 20 minutes.
+   file in VS Code.
 2. **`exercises/exercise_01.py`** — one line to fill in.
 3. **The three checks**, in this order:
 
@@ -93,9 +93,8 @@ $ uv run pytest 00_setup
 2 passed
 ```
 
-Before you fill anything in you will see **one failure and one pass**. That is correct: the
-failing test is yours, the passing one belongs to the model solution. **Red is the starting
-position, not a problem.**
+Before you fill anything in you will see **one failure and one pass**: the failing test is yours,
+the passing one belongs to the model solution.
 
 ## Why the editor feels quieter here
 
@@ -103,18 +102,14 @@ This repository ships a `.vscode/settings.json` that turns completion **down**.
 Nothing pops up while you type: no suggestion list, no ghost text finishing your line, no
 argument hints, no Copilot.
 
-That is deliberate, and it is not about making things harder. An editor that completes your
-line before you have thought it is excellent once you know a language and poor while you are
-learning one — you end up recognising code rather than producing it, and the exercises stop
-measuring anything.
+An editor that finishes the line before you have thought it is excellent in a language you know
+and poor in one you are learning: you end up recognising Python rather than producing it.
 
-**Everything is still one keystroke away.** Press `Ctrl+Space` when you actually want to look
-something up. The difference is between a tool you reach for and a tool that reaches for you.
+**Everything is still one keystroke away.** `Ctrl+Space` opens the list when you want it. What
+stays on: squiggles for real errors, hovers, go-to-definition, the test explorer — those describe
+code that already exists rather than writing it.
 
-What stays on: red squiggles for real errors, hovers, go-to-definition, and the test explorer.
-Those tell you about code you have already written — they do not write it.
-
-If you disagree, delete the file. It is your machine, and there is no grade attached.
+Delete the file if you disagree.
 
 ## Reading the tests
 
@@ -128,12 +123,10 @@ arrives gradually — decorators in module 14, testing itself in module 15.
 
 ## Why this module looks different from the rest
 
-The exercise here defines a *function* with *type hints* — both of which are properly taught in
-module 04. That is deliberate: a function is the smallest thing a real unit test can call, and a
-type hint is the smallest thing a type checker can check. You are not expected to understand the
-syntax yet. You are expected to know which command to type.
-
-From module 01 the exercises go back to the beginning and build up in order.
+The exercise defines a function with type hints, which Python-wise belongs to module 04. A
+function is the smallest thing a unit test can call and an annotation the smallest thing a type
+checker can check, so a tour of the tooling needs both. Take the syntax on trust here; what this
+module is about is which command to type.
 
 ## If something does not work
 

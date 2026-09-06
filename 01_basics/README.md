@@ -1,14 +1,13 @@
 # Module 01 — Basics
 
-**Time:** about 2 hours · **Assumes:** nothing · **Feedback:** the predictions in
-`explore.ipynb` fail until they are right, and `uv run pytest 01_basics` says whether your
-exercises are done
+**Assumes:** module 00. Not Python. · **Feedback:** the predictions in `explore.ipynb` fail
+until they are right, and `uv run pytest 01_basics` says whether your exercises are done
 
 ## What this is about
 
-Variables, the four basic types, input and output — and the two traps everybody falls into:
-`bool("False")` and `0.1 + 0.2`. Plus the skill that pays off most across the whole course:
-**reading an error message**.
+Names, the built-in types and output, with the emphasis on where Python parts company with C
+and Java: `/` is not integer division, integers do not overflow, the type belongs to the value
+rather than to the name, and `bool("False")` is true.
 
 ## What you can do afterwards
 
@@ -23,14 +22,12 @@ If you cannot demonstrate one of these on an exercise, the module is not finishe
 
 ## Order of work
 
-1. **`explore.ipynb`** — eight predictions, about 30 minutes.
-   `uv run jupyter lab`, or just click the file in VS Code.
-2. **`exercises/`** — seven files to fill in, two to think through in `thinking.md`.
+1. **`explore.ipynb`** — the predictions. `uv run jupyter lab`, or click the file in VS Code.
+2. **`exercises/`** — six files to fill in, two to think through in `thinking.md`.
 3. **`uv run pytest 01_basics`** — red until you are done, green when you are.
 4. **`solutions/`** — last, to compare against.
 
-## Not allowed yet
+## Solve these without `if` or loops
 
-`if`, `else`, loops and your own functions. Those arrive in modules 03 and 04. Every exercise
-here works without them — if you feel you need an `if`, what you are missing is an expression,
-not a language feature.
+Not because you do not know them — because the point of these exercises is the expression. If
+you reach for a branch here, there is a shorter way to say it.

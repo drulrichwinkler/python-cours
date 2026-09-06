@@ -3,11 +3,10 @@
 **A practice project.** You work on your own, at your own
 pace, and the machine tells you whether it is right.
 
-> **Who is this for?** People who have never programmed in python. It starts at "what is a variable?" and
-> ends with an application you can show — a web page, an API, a data analysis, a window.
->
-> **If you can already program** — C, Java, C++ — and only need Python, you will save weeks by
-> taking _Python for Switchers_ instead.
+> **Who is this for?** People who can already program — C, Java, C++ — and need Python. It does
+> not explain what a variable, a loop or an exception is. It spends its time on the places where
+> Python behaves differently from what you know, on the idioms, and on the toolchain — and it
+> ends with an application you can show: a web page, an API, a data analysis, a window.
 
 **Start with [`00_setup/`](00_setup/).** It installs the tools and walks you through the workflow
 on one tiny example.
@@ -59,7 +58,7 @@ uv run ruff check .         # is the style clean?
 ```
 
 `pytest` shows **two tests per exercise**: one for the model solution, which is always green, and
-one for yours, which is red until you finish. Red is the starting position, not a problem.
+one for yours, which is red until you finish.
 
 In the notebooks, predictions are plain `assert` statements with `...` where your answer goes:
 

@@ -40,7 +40,8 @@ def _check(path: Path) -> None:
     # Load the file and pull the function out of it by name.
     to_fahrenheit = load_module(path).to_fahrenheit
 
-    # Walk through the list above, one pair at a time. `for` is module 03.
+    # `for celsius, expected in CASES` unpacks each pair into two names at once.
+    # Python does that for any sequence of the right length.
     for celsius, expected in CASES:
         actual = to_fahrenheit(celsius)
 

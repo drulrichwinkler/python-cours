@@ -1,15 +1,15 @@
 # Module 02 — Operators
 
-**Time:** about 1.5 hours · **Assumes:** module 01 · **Feedback:** the predictions in
-`explore.ipynb` fail until they are right, and `uv run pytest 02_operators` says whether your
-exercises are done
+**Assumes:** module 01 · **Feedback:** the predictions in `explore.ipynb` fail until they are
+right, and `uv run pytest 02_operators` says whether your exercises are done
 
 ## What this is about
 
-Arithmetic, comparison, logic. Three things here deserve more attention than the rest: `is`
-versus `==` (the most common confusion in the language), short-circuit evaluation (it decides
-between a crash and no crash) and **bit masks** — your first contact with the way devices
-actually report their state.
+Arithmetic, comparison, logic. Most of it behaves as you expect; the sections that matter are
+the ones that do not. `-17 % 5` is `3` here and `-2` in C. `1 < x < 10` is a real chain rather
+than `(1 < x) < 10`. `and` and `or` hand back an operand, not a boolean. `is` and `==` are
+Java's `==` and `.equals()` with the names swapped. And `~` has no width, which changes how you
+write a bit mask.
 
 ## What you can do afterwards
 
@@ -23,13 +23,12 @@ actually report their state.
 
 ## Order of work
 
-1. **`explore.ipynb`** — eight predictions, about 25 minutes
-2. **`exercises/`** — eight files to fill in, one to think through in `thinking.md`
+1. **`explore.ipynb`** — the predictions
+2. **`exercises/`** — seven files to fill in, one to think through in `thinking.md`
 3. **`uv run pytest 02_operators`**
 4. **`solutions/`** — last
 
-## Not allowed yet
+## Solve these without `if` or loops
 
-`if`, `else`, loops, your own functions. That matters here in particular: several exercises look
-as if they need a branch, and every one of them is a single boolean expression. That is the point
-of the module.
+Several exercises look as if they need a branch, and every one of them is a single boolean
+expression. That is the point of the module — not that you have yet to meet `if`.

@@ -15,8 +15,7 @@ b) `a = 1000; b = 1000; a is b` gives `True` in a file and `False` in a notebook
    cell. What follows from that for your own code?
 c) Why does `count != 0 and total / count > 10` not crash when `count` is `0`?
 
-> **Hint on (a):** two sheets of paper with the same number written on them. Which of the two
-> questions do you answer with "yes", which with "no"?
+> **Hint on (a):** which of the two corresponds to Java's `==`, and which to `.equals()`?
 > **Hint on (b):** the interesting answer is not *why* Python behaves this way, but what you
 > take away for your own code.
 > **Hint on (c):** the keyword is in the hint of `exercise_04.py`.

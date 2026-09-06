@@ -7,11 +7,11 @@ where it actually blew up.
 **b) Which line called the function?**
 Line 12. That is the outer frame, listed first.
 
-**c) What was the value of `anzahl` / `count`?**
+**c) What was the value of `count`?**
 Zero. `ZeroDivisionError` happens for exactly one value of the divisor.
 
 **d) What probably happened?**
-The list `werte` was empty, so `count` was `0`. The function computed a sum over
+The list `values` was empty, so `count` was `0`. The function computed a sum over
 nothing and then divided by a count of nothing. The interesting part is not that
 `count` was zero but *why*: nobody checked whether the list contained anything
 before dividing by its length.

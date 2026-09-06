@@ -8,7 +8,7 @@ Expected output:
 
     Distance to limit: 3.3000000000000007
 
-Yes, really. Section 8 of explore.ipynb explains why.
+Yes, really. Section 9 of explore.ipynb explains why.
 
 Note for yourself: which error type does Python report, and on which line?
 """

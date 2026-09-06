@@ -2,16 +2,14 @@
   // ─────────────────────────────────────────────────────────────────────────
   //  Completion is turned down on purpose.
   //
-  //  Out of the box the editor finishes your line before you have thought it.
-  //  That is excellent once you know a language and poor while you are learning
-  //  one: you end up recognising code instead of producing it, and the exercises
-  //  stop measuring anything.
+  //  An editor that finishes the line before you have thought it is excellent in
+  //  a language you know and poor in one you are learning: you end up recognising
+  //  Python rather than producing it.
   //
-  //  So: nothing pops up by itself. Everything is still one keystroke away --
-  //  press Ctrl+Space when you actually want to look something up. That is the
-  //  difference between a tool you reach for and a tool that reaches for you.
+  //  So nothing pops up by itself. Everything is still one keystroke away --
+  //  Ctrl+Space opens the list when you want it.
   //
-  //  If you would rather have it back, delete this file. It is your machine.
+  //  Delete this file if you disagree.
   // ─────────────────────────────────────────────────────────────────────────
 
   // No suggestion popup while typing. Ctrl+Space still opens it deliberately.
