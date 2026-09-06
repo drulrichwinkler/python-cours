@@ -57,6 +57,10 @@ uv run mypy                 # do the types line up?
 uv run ruff check .         # is the style clean?
 ```
 
+**Name the module you are working on.** `uv run pytest` without a path runs the whole course, and
+that stays red until the last exercise in it is finished — one line per exercise nobody has done
+yet, which buries the one you care about.
+
 `pytest` shows **two tests per exercise**: one for the model solution, which is always green, and
 one for yours, which is red until you finish.
 

@@ -20,6 +20,8 @@ number. That is not an accident.
 
 print(15 + 27)
 print(100 - 43)
-
-
-# TODO
+print(8 * 7)
+print(45 / 6)
+print(45 // 6)
+print(45 % 6)
+print(2**10)

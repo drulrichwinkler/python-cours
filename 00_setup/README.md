@@ -96,6 +96,15 @@ $ uv run pytest 00_setup
 Before you fill anything in you will see **one failure and one pass**: the failing test is yours,
 the passing one belongs to the model solution.
 
+The path matters. `uv run pytest 00_setup` is this module; `uv run pytest` is all of them, and
+that stays red until every exercise in the course is done. Narrow it further when you want a
+single exercise:
+
+```bash
+uv run pytest 02_operators                              # one module
+uv run pytest 02_operators/tests/test_exercise_01.py    # one exercise
+```
+
 ## Why the editor feels quieter here
 
 This repository ships a `.vscode/settings.json` that turns completion **down**.
