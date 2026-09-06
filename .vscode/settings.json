@@ -1,0 +1,64 @@
+{
+  // ─────────────────────────────────────────────────────────────────────────
+  //  Completion is turned down on purpose.
+  //
+  //  Out of the box the editor finishes your line before you have thought it.
+  //  That is excellent once you know a language and poor while you are learning
+  //  one: you end up recognising code instead of producing it, and the exercises
+  //  stop measuring anything.
+  //
+  //  So: nothing pops up by itself. Everything is still one keystroke away --
+  //  press Ctrl+Space when you actually want to look something up. That is the
+  //  difference between a tool you reach for and a tool that reaches for you.
+  //
+  //  If you would rather have it back, delete this file. It is your machine.
+  // ─────────────────────────────────────────────────────────────────────────
+
+  // No suggestion popup while typing. Ctrl+Space still opens it deliberately.
+  "editor.quickSuggestions": {
+    "other": false,
+    "comments": false,
+    "strings": false
+  },
+
+  // No popup from typing "." either -- that one is the reflex-builder.
+  "editor.suggestOnTriggerCharacters": false,
+
+  // When you do open it: plain words from the files you have open, not a ranked
+  // list of everything the language server knows about.
+  "editor.wordBasedSuggestions": "allDocuments",
+  "editor.suggest.showKeywords": true,
+  "editor.suggest.showWords": true,
+  "editor.suggest.showClasses": false,
+  "editor.suggest.showFunctions": false,
+  "editor.suggest.showMethods": false,
+  "editor.suggest.showModules": false,
+  "editor.suggest.showProperties": false,
+  "editor.suggest.showVariables": false,
+  "editor.suggest.showSnippets": false,
+
+  // Enter inserts a newline. Always. Tab inserts a tab.
+  "editor.acceptSuggestionOnEnter": "off",
+  "editor.tabCompletion": "off",
+
+  // No ghost text writing the rest of the line for you, and no Copilot.
+  "editor.inlineSuggest.enabled": false,
+  "github.copilot.enable": { "*": false },
+
+  // No argument list appearing as you open a bracket.
+  "editor.parameterHints.enabled": false,
+
+  // Python-specific: do not add imports for you, do not fill in the brackets
+  // of a function you just picked, do not print the inferred types into the
+  // margin. Working those out is the exercise.
+  "python.analysis.autoImportCompletions": false,
+  "python.analysis.completeFunctionParens": false,
+  "python.analysis.inlayHints.functionReturnTypes": false,
+  "python.analysis.inlayHints.variableTypes": false,
+  "python.analysis.inlayHints.callArgumentNames": "off",
+
+  // What stays on, deliberately: red squiggles for real errors, hovers when you
+  // ask for them, go-to-definition, and the test explorer. Those tell you about
+  // code you have already written -- they do not write it.
+  "python.analysis.typeCheckingMode": "basic"
+}

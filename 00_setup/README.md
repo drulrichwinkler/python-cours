@@ -97,6 +97,25 @@ Before you fill anything in you will see **one failure and one pass**. That is c
 failing test is yours, the passing one belongs to the model solution. **Red is the starting
 position, not a problem.**
 
+## Why the editor feels quieter here
+
+This repository ships a `.vscode/settings.json` that turns completion **down**.
+Nothing pops up while you type: no suggestion list, no ghost text finishing your line, no
+argument hints, no Copilot.
+
+That is deliberate, and it is not about making things harder. An editor that completes your
+line before you have thought it is excellent once you know a language and poor while you are
+learning one — you end up recognising code rather than producing it, and the exercises stop
+measuring anything.
+
+**Everything is still one keystroke away.** Press `Ctrl+Space` when you actually want to look
+something up. The difference is between a tool you reach for and a tool that reaches for you.
+
+What stays on: red squiggles for real errors, hovers, go-to-definition, and the test explorer.
+Those tell you about code you have already written — they do not write it.
+
+If you disagree, delete the file. It is your machine, and there is no grade attached.
+
 ## Reading the tests
 
 You are meant to open `tests/` and read it. The test says, in code, exactly what your exercise
