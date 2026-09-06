@@ -6,9 +6,7 @@ Expected output:
 
     False
 
-Hint: with `and`, Python evaluates the left side first -- and if that already
-settles the result, it never looks at the right side at all. The order here is
-not style, it is the whole trick.
+Hint: `and` short-circuits, exactly like `&&`. Put the guard on the left.
 
 Note for yourself: which error type does Python report?
 """

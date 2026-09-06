@@ -1,8 +1,8 @@
 """Exercise 01 -- Your first function, with a type hint.
 
-This module is a guided tour of the tools, not a lesson about the language. You
-are not expected to understand every line yet -- functions arrive in module 04
-and type hints in module 04 as well. What you practise here is the workflow.
+Functions and type hints belong to module 04. They are here because a function is
+the smallest thing a test can call and an annotation the smallest thing a checker
+can check -- this module is a tour of the tooling, not a lesson about the language.
 
 THE TASK
 
@@ -21,16 +21,14 @@ HOW YOU KNOW YOU ARE DONE -- three checks, in this order:
 
 All three green means done. No one to ask.
 
-READING THE SIGNATURE
+ABOUT THE SIGNATURE
 
     def to_fahrenheit(celsius: float) -> float:
 
-  - `celsius: float`  -- this function expects a floating point number
-  - `-> float`        -- and it hands one back
-
-Python does NOT enforce this while running. It is a promise to the reader, and
-`mypy` is the tool that checks whether you keep it. Try breaking it on purpose
-once you are done: return `"warm"` instead of a number and run `uv run mypy`.
+Unlike C or Java, Python does not enforce that annotation while running -- the
+interpreter ignores it, and nothing stops the function from returning a string.
+`mypy` is the separate tool that checks whether you kept the promise. Try breaking
+it on purpose once you are done: return `"warm"` and run `uv run mypy`.
 """
 
 

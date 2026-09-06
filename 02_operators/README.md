@@ -15,7 +15,8 @@ write a bit mask.
 
 1. give the **evaluation order** of an arithmetic expression and predict its result —
    including `**`, `//` and `%`;
-2. write out a complete **truth table** for `and` and `or`;
+2. **say** what `and` and `or` hand back -- the operand, not `True`/`False` -- and name the
+   case where `count or 10` gives the wrong default;
 3. **explain** why `==` and `is` ask different questions, and say which one you use on values;
 4. **read** a single bit out of a status byte with `&` and **set** one with `|`;
 5. write a range check as a **comparison chain** (`1 < x < 10`) and explain why that is not the

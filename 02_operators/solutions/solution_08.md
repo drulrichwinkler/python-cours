@@ -2,12 +2,11 @@
 
 **a) The difference between `==` and `is`**
 
-`==` asks about the value: *does this hold the same thing?* `is` asks about identity: *is this
-the same object in memory?*
+`==` asks about the value, `is` about identity. In Java terms the names are swapped: Python's
+`==` is `.equals()`, Python's `is` is Java's `==`.
 
 For two sensor readings you use `==`. You want to know whether the same temperature was
-reported, not whether both names happen to point at one object. Two sheets of paper with `21.7`
-written on them are equal in value and are not the same sheet.
+reported, not whether both names point at one object.
 
 **b) `a is b` gives different answers in a file and in a notebook**
 

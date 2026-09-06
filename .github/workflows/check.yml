@@ -10,6 +10,17 @@ jobs:
       - uses: astral-sh/setup-uv@v5
       - run: uv sync
 
+      # A fresh clone must hand out unsolved exercises. It is easy to commit a
+      # worked-through file by accident -- `git add -A` in a working copy that is
+      # also someone's workspace does it silently.
+      - name: Exercises are unsolved
+        run: |
+          fail=0
+          for f in */exercises/exercise_*.py; do
+            grep -q '# TODO' "$f" || { echo "solved in the repository: $f"; fail=1; }
+          done
+          exit $fail
+
       # Every model solution must pass the same test its exercise does.
       # The `your_turn` tests are excluded -- they are meant to be red in a fresh clone.
       - name: Tests (model solutions)
