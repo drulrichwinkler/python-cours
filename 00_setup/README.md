@@ -71,6 +71,8 @@ uv add requests              # add a package (you will need this from module 16)
 
 ## Order of work
 
+0. **`selfcheck.ipynb`** — six statements, two minutes. Tells you whether to read on
+   or skip ahead.
 1. **`explore.ipynb`** — the guided tour, and where `assert` is introduced: it is how every
    prediction and every test in this course states what it expects. Open it with
    `uv run jupyter lab`, or just click the

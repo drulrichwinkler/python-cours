@@ -22,6 +22,7 @@ If you cannot demonstrate one of these on an exercise, the module is not finishe
 
 ## Order of work
 
+0. **`selfcheck.ipynb`** — six statements, two minutes. All `True` means skip the module.
 1. **`explore.ipynb`** — the predictions. `uv run jupyter lab`, or click the file in VS Code.
 2. **`exercises/`** — six files to fill in, two to think through in `thinking.md`.
 3. **`uv run pytest 01_basics`** — red until you are done, green when you are.

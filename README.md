@@ -11,6 +11,10 @@ pace, and the machine tells you whether it is right.
 **Start with [`00_setup/`](00_setup/).** It installs the tools and walks you through the workflow
 on one tiny example.
 
+**Already know some of this?** Every module has a `selfcheck.ipynb`: six statements to mark
+`True` or `False`, and a verdict on whether the module has anything for you. Two minutes, and
+the cheapest way to skip what you can already do.
+
 ---
 
 ## Quick start
@@ -78,15 +82,55 @@ machine differs from the machine, and that is the only thing worth spending time
 
 ## Structure
 
-| Part | Modules | Content                                                                |
-| ---- | ------- | ---------------------------------------------------------------------- |
-| 0    | 00      | Setup: uv, the editor, the workflow, the three checks                  |
-| 1    | 01–05   | Core language: variables, operators, branches, loops, functions, lists |
-| 2    | 06–10   | Data and robustness: dictionaries, strings, files, errors, modules     |
-| 3    | 11–13   | Objects: classes, inheritance, generators                              |
-| 4    | 14–19   | Tools and data: decorators, testing, HTTP, scraping, pandas, SQL       |
-| 5    | 20–25   | Excursions: Flask, Streamlit, FastAPI, Tkinter, Textual                |
-| 6    | 26      | Final project                                                          |
+### Part 0 — Tooling · module 00
+
+`uv`, the editor, running one test or all of them, reading a traceback, what a type checker adds.
+No language content.
+
+### Part 1 — The language, as far as it differs · modules 01–05
+
+Names and the built-in types · operators and precedence · branches and loops · functions, default
+arguments, `*args`/`**kwargs` · lists, tuples, slicing, comprehensions.
+
+If you write C or Java, most of the syntax here will cost you an afternoon. What will not: `/`
+against `//`, integers without a width, `bool("False")`, `-17 % 5`, chained comparison, what `and`
+returns, `is` against `==`, and comprehensions.
+
+### Part 2 — Data and robustness · modules 06–10
+
+Dictionaries and sets · strings and formatting · files, `pathlib`, CSV and JSON · exceptions and
+`with` · modules, packages, `__main__`, and the `uv` project layout.
+
+This is where the course stops being a translation exercise. `dict` is the building block Python
+reaches for where Java reaches for a class, and `with` is a resource pattern with no counterpart
+in either language.
+
+### Part 3 — Objects · modules 11–13
+
+Classes, attributes, properties · inheritance, MRO, magic methods, `@dataclass` · iterators and
+generators.
+
+`yield` is the one with no equivalent in C and only a distant one in Java streams.
+
+### Part 4 — Tools and data · modules 14–19
+
+Decorators and functions as values · `pytest` · HTTP with `requests`, and `bytes` on the wire ·
+scraping with BeautifulSoup · pandas · SQL with `sqlite3`.
+
+The step up. From module 15 on, the feedback is a test suite rather than an expected output.
+
+### Part 5 — Excursions · modules 20–25
+
+Processes and ports · **Flask** (routes and templates) · **Streamlit** (the same analysis with no
+HTML) · **FastAPI** (your type hints become the interface) · **Tkinter** (an event loop) ·
+**Textual** (the same in a terminal).
+
+Five frameworks solving one identical task, so the differences show themselves instead of being
+asserted.
+
+### Part 6 — Final project · module 26
+
+Everything at once, built on your own.
 
 **One thread runs through all of it:** a sensor log file. It gets read (08), tested (15), fetched
 over HTTP (16), analysed with pandas (18), stored in SQLite (19) — and then displayed five times

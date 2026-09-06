@@ -35,11 +35,11 @@ jobs:
       - name: Format
         run: uv run ruff format --check .
 
-      # Every explore notebook must run top to bottom.
+      # Every notebook must run top to bottom -- explore and selfcheck alike.
       # Cells that fail on purpose carry the `raises-exception` tag.
       - name: Notebooks
         run: |
-          for f in */explore.ipynb; do
+          for f in */*.ipynb; do
             echo "--- $f"
             uv run jupyter nbconvert --to notebook --execute --stdout "$f" > /dev/null
           done
