@@ -18,10 +18,4 @@ Hint: look at lines 4 and 5. One gives a floating point number, the other a whol
 number. That is not an accident.
 """
 
-print(15 + 27)
-print(100 - 43)
-print(8 * 7)
-print(45 / 6)
-print(45 // 6)
-print(45 % 6)
-print(2**10)
+# TODO
