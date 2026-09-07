@@ -67,5 +67,11 @@ und `course/` (Infrastruktur) — dort ist der Autor das Publikum.
   kaputten Code reparieren, eine Entscheidung begründen.
 - **Werkzeugkette:** `uv` durchgehend. `uv run pytest -m "not your_turn"`, `uv run mypy`,
   `uv run ruff check .`, `uv run ruff format --check .` müssen grün sein.
+- **Dependency Groups.** `uv sync` installiert nur `dev` — die Werkzeugkette. Alles, was ein
+  Modul ab 16 braucht, gehört in `net` (16–17), `data` (18) oder `apps` (21–25), nie in
+  `[project] dependencies`. Ein Modul, das ein Paket aus einer Gruppe benutzt, sagt das in
+  seinem README in der ersten Zeile: `**Needs:** uv sync --group data`. Begründung und die
+  gemessenen Fallstricke (`uv sync` entfernt Gruppen wieder; `requests` und `beautifulsoup4`
+  sind transitiv über Jupyter schon da) stehen in `README.md`, Abschnitt „Dependency groups".
 - **Notebooks laufen top-to-bottom durch.** Zellen, die absichtlich scheitern (Vorhersagen,
   vorgeführte Fehler), tragen das Tag `raises-exception`.

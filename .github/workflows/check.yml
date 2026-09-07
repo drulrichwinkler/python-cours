@@ -10,6 +10,12 @@ jobs:
       - uses: astral-sh/setup-uv@v5
       - run: uv sync
 
+      # The later parts' packages are in dependency groups and are NOT installed
+      # above -- see README.md. Nothing in this build needs them, but the lock file
+      # has to stay solvable, or a student reaches module 16 and finds out for us.
+      - name: Dependency groups still resolve
+        run: uv lock --check
+
       # A fresh clone must hand out unsolved exercises. It is easy to commit a
       # worked-through file by accident -- `git add -A` in a working copy that is
       # also someone's workspace does it silently.
