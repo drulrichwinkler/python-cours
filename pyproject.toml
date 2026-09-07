@@ -13,41 +13,24 @@ build-backend = "hatchling.build"
 packages = ["course"]
 
 [dependency-groups]
-# The toolchain. Installed by `uv sync`, because every module from 00 on needs it.
+# Everything the course needs, in one group, installed by `uv sync`. The toolchain
+# first, then the packages the later modules use -- one setup, and nothing to
+# install again when you reach module 16.
 dev = [
+    # The toolchain, needed from module 00 on
     "pytest>=8.0",
     "ruff>=0.6",
     "jupyterlab>=4.0",
     "nbclient>=0.10",
     "mypy>=1.11",
-]
-
-# Everything below is NOT installed by `uv sync`. Each group belongs to a part of
-# the course, and you install it when you get there:
-#
-#   uv sync --group net      before module 16
-#   uv sync --group data     before module 18
-#   uv sync --group apps     before module 20
-#
-# The point of the split is that the first fifteen modules need nothing but the
-# standard library, and pandas plus five web frameworks is a long download to make
-# somebody wait for on their first afternoon. See README.md, "Dependency groups".
-
-# Modules 16-17: data over HTTP, and scraping.
-net = [
+    # Modules 16-17: HTTP and scraping
     "requests>=2.32",
     "beautifulsoup4>=4.12",
-]
-
-# Module 18: pandas.
-data = [
+    # Module 18: the analysis
     "pandas>=2.2",
-]
-
-# Modules 21-25: the five frameworks that solve the same task five ways.
-# tkinter (module 24) is in the standard library and is not listed here -- on Linux
-# it may need a system package, which module 24 says how to check.
-apps = [
+    # Modules 21-25: the five frameworks that solve one task five ways.
+    # tkinter (module 24) is in the standard library and is not listed -- on Linux
+    # it may need a system package, which module 24 says how to check.
     "flask>=3.0",
     "streamlit>=1.38",
     "fastapi>=0.115",

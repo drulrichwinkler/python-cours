@@ -44,13 +44,9 @@ uv sync
 ```
 
 That reads `pyproject.toml`, downloads Python 3.12 if you do not have it, creates a `.venv`
-folder and installs the toolchain: pytest, ruff, mypy and Jupyter. It takes a minute the first
-time and a second after that.
-
-**Note what it does not install.** Modules 00 to 15 need nothing beyond the standard library, so
-`uv sync` stops there. `pandas` and the five frameworks of Part 5 are declared as *dependency
-groups* and installed when you reach them — `uv sync --group data` before module 18, and so on.
-The root `README.md` has the table and explains why the course is arranged that way.
+folder and installs everything the course needs — the toolchain and every package any module
+uses, including the ones for Part 5. It takes a few minutes the first time and a second after
+that, and there is nothing to install again later.
 
 ## The one command you need
 
@@ -67,18 +63,16 @@ uv run jupyter lab           # open the notebooks
 You never activate a virtual environment by hand and you never type `pip install`. If a command
 fails with "module not found", the fix is almost always that you left out `uv run`.
 
-Three more that come up occasionally:
+Two more that come up occasionally:
 
 ```bash
 uv sync                      # after pulling changes: bring the environment up to date
-uv sync --group data         # install one of the later parts' packages (module 18 onwards)
 uv add requests              # add a package to the project -- this is module 10
 ```
 
-One thing about the second one, because it looks like a bug the first time: `uv sync` means
-*make the environment match what is declared*, which includes **removing** what is not. So a
-plain `uv sync` after `uv sync --group data` takes `pandas` out again. It is not broken, and
-`uv sync --group data` puts it back. The root `README.md` says how to make it stick.
+`uv sync` means *make the environment match what `pyproject.toml` and `uv.lock` say* — which
+includes removing anything that is installed and not declared. So it is the command to run when
+something looks wrong with the environment, not just after a `git pull`.
 
 ## Order of work
 

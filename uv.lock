@@ -1942,49 +1942,39 @@ version = "2026.1"
 source = { editable = "." }
 
 [package.dev-dependencies]
-apps = [
+dev = [
+    { name = "beautifulsoup4" },
     { name = "fastapi" },
     { name = "flask" },
-    { name = "streamlit" },
-    { name = "textual" },
-    { name = "uvicorn" },
-]
-data = [
-    { name = "pandas" },
-]
-dev = [
     { name = "jupyterlab" },
     { name = "mypy" },
     { name = "nbclient" },
+    { name = "pandas" },
     { name = "pytest" },
-    { name = "ruff" },
-]
-net = [
-    { name = "beautifulsoup4" },
     { name = "requests" },
+    { name = "ruff" },
+    { name = "streamlit" },
+    { name = "textual" },
+    { name = "uvicorn" },
 ]
 
 [package.metadata]
 
 [package.metadata.requires-dev]
-apps = [
+dev = [
+    { name = "beautifulsoup4", specifier = ">=4.12" },
     { name = "fastapi", specifier = ">=0.115" },
     { name = "flask", specifier = ">=3.0" },
-    { name = "streamlit", specifier = ">=1.38" },
-    { name = "textual", specifier = ">=0.80" },
-    { name = "uvicorn", specifier = ">=0.30" },
-]
-data = [{ name = "pandas", specifier = ">=2.2" }]
-dev = [
     { name = "jupyterlab", specifier = ">=4.0" },
     { name = "mypy", specifier = ">=1.11" },
     { name = "nbclient", specifier = ">=0.10" },
+    { name = "pandas", specifier = ">=2.2" },
     { name = "pytest", specifier = ">=8.0" },
-    { name = "ruff", specifier = ">=0.6" },
-]
-net = [
-    { name = "beautifulsoup4", specifier = ">=4.12" },
     { name = "requests", specifier = ">=2.32" },
+    { name = "ruff", specifier = ">=0.6" },
+    { name = "streamlit", specifier = ">=1.38" },
+    { name = "textual", specifier = ">=0.80" },
+    { name = "uvicorn", specifier = ">=0.30" },
 ]
 
 [[package]]

@@ -26,11 +26,8 @@ grep -qxF 'export PATH="$HOME/.local/bin:$PATH"' "$HOME/.bashrc" \
 
 echo "==> Installing the course environment"
 # --locked refuses to silently update uv.lock: everyone gets identical versions.
-#
-# This installs the `dev` group only -- the toolchain. The packages for modules 16
-# onwards live in the `net`, `data` and `apps` groups and are deliberately left out,
-# so that building this container does not download pandas and five web frameworks
-# for somebody who is on module 01. See README.md, "Dependency groups".
+# This installs everything the course needs, including the packages for Part 5 --
+# one setup, and nothing to install again at module 16.
 uv sync --locked
 
 echo "==> Checking that it works"
@@ -48,10 +45,5 @@ cat <<'MSG'
     uv run pytest 00_setup     does it compute the right thing?
     uv run mypy                do the types line up?
     uv run ruff check .        is the style clean?
-
-  Later parts need more packages. Install a group when you get there:
-    uv sync --group net        before module 16
-    uv sync --group data       before module 18
-    uv sync --group apps       before module 20
 
 MSG

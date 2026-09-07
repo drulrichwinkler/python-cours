@@ -35,62 +35,16 @@ uv run jupyter lab 00_setup/explore.ipynb
 You need [uv](https://docs.astral.sh/uv/) and [VS Code](https://code.visualstudio.com/).
 `uv` fetches Python itself — do not install it separately. Details in `00_setup/README.md`.
 
-## Dependency groups
+## What `uv sync` installs
 
-`uv sync` installs the toolchain — pytest, ruff, mypy, Jupyter — and **nothing else**. Modules
-00 to 15 need nothing else: they use the standard library, which is what ships with Python.
+Everything, in one go: the toolchain (pytest, ruff, mypy, Jupyter) and every package any module
+uses — `requests` and `beautifulsoup4` for modules 16 and 17, `pandas` for 18, and the five
+frameworks of Part 5. It takes a few minutes once, and there is nothing to install again when
+you get to module 16.
 
-Three later parts of the course need real packages, and they are declared as **dependency
-groups** rather than as dependencies of the project. Install a group when you get to it:
-
-| before | command | what it brings | why |
-| --- | --- | --- | --- |
-| module 16 | `uv sync --group net` | `requests`, `beautifulsoup4` | HTTP and scraping |
-| module 18 | `uv sync --group data` | `pandas` | the analysis |
-| module 20 | `uv sync --group apps` | `flask`, `streamlit`, `fastapi`, `uvicorn`, `textual` | the five frameworks |
-
-`uv sync --all-groups` installs everything at once, if you would rather wait once than three
-times.
-
-**Why not simply list them all?** Because `pandas` plus five web frameworks is a long download,
-and the first fifteen modules do not use any of it. Splitting it keeps the first `uv sync` short
-and makes each module say what it actually needs — which is a project-layout decision of exactly
-the kind module 10 is about, made in this repository so that you can read it.
-
-### The two commands behave differently, and it matters
-
-Measured, not guessed:
-
-- **`uv run --group apps streamlit run app.py`** installs the group into the environment and
-  leaves it there. Convenient for one command.
-- **`uv sync`** afterwards makes the environment match exactly what is declared — so it
-  **removes** the group again. That is not a bug: `sync` means *make it match*, and the group is
-  not in the default set.
-
-So if `import pandas` stops working after a `uv sync`, nothing broke — the group was pruned.
-`uv sync --group data` puts it back. If you would rather that never happened, add the groups you
-use to `[tool.uv] default-groups` in `pyproject.toml`, and `uv sync` will keep them.
-
-### One thing that will confuse you before module 16
-
-`import requests` works right now, before you have installed anything. So does `import bs4`.
-Neither is declared as a dependency of this project:
-
-```console
-$ uv pip show requests | grep Required-by
-Required-by: jupyterlab-server
-$ uv pip show beautifulsoup4 | grep Required-by
-Required-by: nbconvert
-```
-
-They are there because **Jupyter** needs them. That is a *transitive* dependency, and code that
-relies on one is broken in a way that has not happened yet: the day Jupyter drops it, or you
-install this project without the `dev` group, your import fails and nothing in your
-`pyproject.toml` explains why.
-
-Which is the rule this repository follows and module 10 argues for: **declare what you import.**
-The `net` group lists `requests` and `beautifulsoup4` even though both are already installed,
-because module 16 imports them and a project should say so.
+`tkinter` (module 24) is the one exception, because it is part of Python rather than a package.
+On macOS and Windows it is already there; on some Linux distributions it is a separate system
+package, and module 24 says how to check.
 
 ## How a module works
 
@@ -171,16 +125,12 @@ generators.
 
 ### Part 4 — Tools and data · modules 14–19
 
-> Needs `uv sync --group net` from module 16 and `uv sync --group data` from module 18.
-
 Decorators and functions as values · `pytest` · HTTP with `requests`, and `bytes` on the wire ·
 scraping with BeautifulSoup · pandas · SQL with `sqlite3`.
 
 The step up. From module 15 on, the feedback is a test suite rather than an expected output.
 
 ### Part 5 — Excursions · modules 20–25
-
-> Needs `uv sync --group apps`.
 
 Processes and ports · **Flask** (routes and templates) · **Streamlit** (the same analysis with no
 HTML) · **FastAPI** (your type hints become the interface) · **Tkinter** (an event loop) ·

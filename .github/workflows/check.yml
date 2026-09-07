@@ -10,10 +10,10 @@ jobs:
       - uses: astral-sh/setup-uv@v5
       - run: uv sync
 
-      # The later parts' packages are in dependency groups and are NOT installed
-      # above -- see README.md. Nothing in this build needs them, but the lock file
-      # has to stay solvable, or a student reaches module 16 and finds out for us.
-      - name: Dependency groups still resolve
+      # uv sync above would quietly update uv.lock if pyproject.toml had moved on.
+      # This fails instead, so a lock file that was not committed is caught here
+      # rather than by whoever clones next.
+      - name: Lock file matches pyproject.toml
         run: uv lock --check
 
       # A fresh clone must hand out unsolved exercises. It is easy to commit a

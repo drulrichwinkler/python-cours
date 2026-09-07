@@ -25,10 +25,8 @@ somebody else.
   directory; Python has no such line — the position on `sys.path` is the whole truth.
 - **A project is a `pyproject.toml`, a `src/` folder and a lock file.** `uv init`, `uv add`,
   `uv sync`, `uv run` — and `[project.scripts]`, which is how a function becomes a command.
-- **Dependency groups**, which is where a package that only the tests need goes. This repository
-  uses them: `uv sync` gives you the toolchain and nothing else, and the packages for modules 16
-  onwards arrive with `uv sync --group net` and friends. The root `README.md` explains the split;
-  this module explains the mechanism.
+- **Dependency groups**, which is the line between what your program needs and what developing
+  it needs. `pytest` belongs on one side of it and `requests` on the other.
 
 And two names promised back in module 06: `collections.Counter` and `collections.defaultdict`,
 which is where the standard library gets its introduction.
