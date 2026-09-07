@@ -1,0 +1,41 @@
+/* The layout of app.py, and none of its behaviour.
+
+   This is a real stylesheet -- Textual parses CSS. What it means is that the
+   arrangement of the interface is data in a file, not a sequence of .pack() calls
+   inside __init__ as it was in module 24. You can change the width of the table
+   here and restart, and no Python was touched.
+
+   Textual's dialect is small and mostly self-explanatory. The units that are not:
+   `1fr` is one share of the remaining space, and `auto` is as much as the content
+   needs. */
+
+#title {
+    padding: 0 1;
+    background: $accent;
+    color: $text;
+    text-style: bold;
+}
+
+#controls {
+    height: auto;
+    padding: 1;
+}
+
+#controls Label {
+    padding: 1 1 0 0;
+}
+
+#limit {
+    width: 12;
+}
+
+#table {
+    height: 1fr;
+    border: round $primary;
+}
+
+#status {
+    height: auto;
+    padding: 0 1;
+    color: $text-muted;
+}
