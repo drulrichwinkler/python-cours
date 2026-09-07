@@ -10,7 +10,7 @@ def to_reading(raw):
         return float(raw)
     except ValueError as err:
         # `from err` says the connection is deliberate: Python prints the original
-        # under "The above exception was the direct cause of the following".
+        # under "The above exception was the direct cause of the following exception:".
         raise ParseError(f"not a reading: {raw!r}") from err
 
 

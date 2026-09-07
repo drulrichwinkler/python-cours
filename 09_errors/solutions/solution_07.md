@@ -7,8 +7,8 @@
    Python there is no such pass; a `FileNotFoundError` from a library you called
    three levels down reaches your `main` and nobody was asked about it.
 2. **It puts the answer in the signature**, where the caller reads it. `throws
-   IOException` is machine-checked documentation: it cannot be out of date, because
-   the code would not compile. A Python docstring saying `Raises: ParseError` is a
+   IOException` is machine-checked documentation: it can name more than actually
+   happens, but never less — leave one out and the code does not compile. A Python docstring saying `Raises: ParseError` is a
    promise nothing verifies, and it goes stale the first time somebody adds a branch.
 
 The honest summary: Java catches a real class of mistake that Python leaves to you.

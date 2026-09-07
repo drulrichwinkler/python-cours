@@ -6,8 +6,8 @@ right, and `uv run pytest 09_errors` says whether your exercises are done
 ## What this is about
 
 Module 08 left two loose ends: what `with` actually is, and what to do about a missing file
-instead of checking for it first. This module ties both, and adds the thing that makes a program
-debuggable once it runs somewhere you cannot watch it.
+instead of checking for it first. This module ties both, and adds logging — what replaces
+`print` once the program runs somewhere you cannot watch it.
 
 - **There are no checked exceptions.** Nothing in a signature says what a function raises, and
   nothing forces you to handle it. Four semesters of `throws IOException` have no counterpart —

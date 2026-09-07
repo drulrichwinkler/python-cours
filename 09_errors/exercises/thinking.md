@@ -18,8 +18,8 @@ def read(path: Path) -> str: ...                  # says nothing
 a) Name two things the Java compiler does for you here that nothing in Python does.
    Be specific about *when* each one happens.
 b) Checked exceptions are also the most argued-about feature in Java, and the
-   languages that followed it onto the same runtime declined to have them — Kotlin
-   deliberately, C# from the start. Give the case against them: what do programmers
+   languages that came after it declined to follow — Kotlin on the same runtime
+   deliberately, C# on another from the start. Give the case against them: what do programmers
    actually write when the compiler insists?
 c) You are writing a library function that reads a config file. Nothing forces you to
    document what it raises, and nothing forces the caller to handle it. Say what you

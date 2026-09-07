@@ -7,7 +7,7 @@ from pathlib import Path
 
 DATA = Path(__file__).resolve().parent.parent / "data"
 
-stream = io.StringIO()  # a log destination we can print, so the output is checkable
+stream = io.StringIO()  # a log destination that can be printed, so the output is checkable
 handler = logging.StreamHandler(stream)
 handler.setFormatter(logging.Formatter("%(levelname)s %(name)s: %(message)s"))
 

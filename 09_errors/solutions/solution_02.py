@@ -7,9 +7,10 @@ sneaky()         is 'from finally'. A return in `finally` replaces the one from 
                  `try`, and would swallow an exception on its way past. Legal,
                  almost never wanted, and Java does the same thing.
 issubclass       ValueError is an Exception; KeyboardInterrupt is not -- it comes
-                 straight off BaseException, along with SystemExit. That is the
-                 whole difference between `except Exception` and a bare `except:`,
-                 and it is why the bare form can stop Ctrl-C from working.
+                 straight off BaseException, along with SystemExit. That is what
+                 the difference between `except Exception` and a bare `except:`
+                 amounts to in practice, and it is why the bare form can stop
+                 Ctrl-C from working.
 caught           is 'FileNotFoundError'. An except clause catches its class and
                  every subclass, and FileNotFoundError is an OSError. The name of
                  the class you catch decides how much you took responsibility for.
