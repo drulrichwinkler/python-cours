@@ -19,7 +19,10 @@ and it is an argument for a type annotation on the parameter.
 **b) The rule the `None` follows**
 
 Command–query separation: a method either changes the object or answers a question
-about it, never both. `sort` changes; therefore it answers nothing.
+about it, not both. `sort` changes; therefore it answers nothing. `pop` is the one
+place the library breaks its own rule, and it is worth asking why that one is
+allowed: without a return value it would be useless, and what it hands back is the
+item, not the container.
 
 The bug it makes impossible is the quiet alias. If `sort` returned the list, then
 
@@ -36,7 +39,7 @@ What it costs: no chaining. `values.sort().reverse()` is not available, and you
 write two statements — or use `sorted(values, reverse=True)`, which is the better
 line anyway.
 
-**c) Where the wrong choice is invisible**
+**c) Where the wrong choice passes the test**
 
 ```python
 def top_three(log):

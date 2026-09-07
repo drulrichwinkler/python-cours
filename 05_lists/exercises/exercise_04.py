@@ -22,8 +22,8 @@ what is left over and is always a list, even when it collects nothing.
 
 readings = [21.7, 22.0, 22.4, 23.1, 21.9]
 
-low, high, rest = endpoints(readings)
-print(low, high)
+first, last, rest = endpoints(readings)
+print(first, last)
 print(rest)
 
 a, b = "TH-04", "TH-09"

@@ -15,8 +15,8 @@ This is that module. Everything else in it hangs off the same fact.
   the object can change.
 - **`+=` mutates a list and rebinds a tuple.** Same operator, two behaviours, and the difference
   is exactly the one above. This is the sharpest thing in the module.
-- **Slicing**, which has no counterpart in C or Java at all: a sub-list in three characters, a
-  copy, a reversal, and an assignment target.
+- **Slicing**, for which C has nothing at all and Java only `subList` and `Arrays.copyOfRange`:
+  a sub-list in three characters, a copy, a reversal, and an assignment target.
 - **Copying is shallow unless you say otherwise.** `list(x)`, `x[:]` and `copy.copy(x)` all give
   you a new outer list whose elements are still the old objects. `[[0] * 3] * 3` is the version of
   that mistake which costs a whole afternoon.

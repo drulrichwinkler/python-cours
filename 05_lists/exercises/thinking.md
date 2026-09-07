@@ -55,8 +55,8 @@ b) `sort`, `reverse`, `append` and `extend` all return `None`, and this was deci
    on purpose. Name the rule it follows, and one bug it makes impossible. Then name
    what it costs you.
 c) `x.sort()` and `sorted(x)` do the same work and differ in what they touch. Give a
-   line of code for which the wrong choice is a bug that a test would not catch,
-   only a second reader.
+   function for which the wrong choice passes the obvious test and still breaks
+   something elsewhere. Then say what the test would have had to assert.
 
 > **Hint on (b):** what would `y = x.sort()` have given you if `sort` returned the
 > list, and how long would it have taken you to notice?
