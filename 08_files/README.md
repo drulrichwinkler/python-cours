@@ -11,16 +11,17 @@ course: tested in module 15, fetched over HTTP in 16, analysed with pandas in 18
 SQLite in 19, and displayed five different ways in modules 21–25.
 
 - **`pathlib.Path` is an object, not a string.** You have been reading `Path(__file__).parent`
-  in every test file since module 00; this is where it gets explained. `/` joins parts, and the
+  as `Path(__file__).resolve().parent.parent` in every test file since module 00; this is where
+  it gets explained. `/` joins parts, and the
   result works on Windows and macOS alike.
 - **Naming the encoding is not optional.** `open()` without one asks the operating system, and
   the answer differs between machines. Python will even point at the line for you:
   `python -X warn_default_encoding` turns every unnamed encoding into a warning.
 - **The wrong encoding is worse when it does not raise.** `ascii` raises on the first byte it
-  cannot handle. `latin-1` never raises — it produces `Â°C` and travels on into your database.
+  cannot handle. `latin-1` never raises on a read — it produces `Â°C`, which travels on into your
+  database as an ordinary string.
 - **CSV is not "split on the comma".** A field may contain the separator, in quotes, and the
-  module that reads it is one line longer than doing it by hand and correct on data you did not
-  write.
+  module that reads it is no longer than doing it by hand and correct on data you did not write.
 - **JSON is not Python.** The round trip is lossy in ways that are easy to miss: a `tuple` comes
   back a `list`, an `int` key comes back a `str` key, and a `set` does not go out at all.
 

@@ -12,8 +12,10 @@ data.read_text(encoding="ascii")    # UnicodeDecodeError
 data.read_text(encoding="latin-1")  # 'TH-01;21.7;Â°C;Hall'
 ```
 
-a) Explain, in terms of what an encoding is, why `latin-1` cannot fail and `ascii`
-   can. Do not say "latin-1 is more permissive" — say what the mapping does.
+a) Explain, in terms of what an encoding is, why `latin-1` cannot fail *on a read*
+   and `ascii` can. Do not say "latin-1 is more permissive" — say what the mapping
+   does. Then say what happens in the other direction, when a `str` holding `€` is
+   written with `encoding="latin-1"`.
 b) Which of the two failures would you rather have in a program that reads a
    customer's file at three in the morning, and why? Name what happens to the
    `Â°C` afterwards.

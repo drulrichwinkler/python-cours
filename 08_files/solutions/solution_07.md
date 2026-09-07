@@ -14,6 +14,11 @@ return and raises.
 it has nothing to raise about. That is not permissiveness, it is completeness: the
 mapping is total, and a total function has no error case.
 
+Only in that direction, though. Going the other way there are 256 characters
+available and rather more than 256 in Unicode, so `"€".encode("latin-1")` raises
+`UnicodeEncodeError`. Reading with the wrong encoding is the silent half; writing
+with it is loud.
+
 UTF-8 sits in between: multi-byte sequences have a shape, and a byte that cannot
 start or continue one is an error. That is why UTF-8 usually notices when it is
 handed something else.
@@ -35,7 +40,7 @@ returns a value costs you a data migration.**
 
 **c) What is wrong with `.replace("Â°", "°")`**
 
-Beyond inelegance: it is not one substitution, it is 1920 of them. Every code point
+Beyond inelegance: it is not one substitution, it is at least 1920 of them. Every code point
 that UTF-8 writes in two bytes turns into its own pair of characters — `ä` becomes
 `Ã¤`, `ö` becomes `Ã¶`, `ß` becomes `Ã\x9f` — and three-byte characters like `€`
 produce three. A `.replace` fixes the one that was noticed and leaves the rest, so
