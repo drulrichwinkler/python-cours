@@ -30,10 +30,9 @@ def test_solution_matches_the_brief() -> None:
     assert_runs(SOLUTION)
 
 
-# A line starting with @ is a decorator: a label stuck onto the function below it,
-# and module 14 is where that stops being a rule and becomes an assignment. This
-# one marks the test as YOURS, so the automated build can skip it -- it is supposed
-# to be red in a fresh copy.
+# A line starting with @ is a decorator: `@x` above a def binds the name to
+# x(function) -- section 2 of this module. This one marks the test as YOURS, so the
+# automated build can skip it: it is supposed to be red in a fresh copy.
 @pytest.mark.your_turn
 def test_your_solution() -> None:
     """Red until you have finished the exercise. That is the point."""

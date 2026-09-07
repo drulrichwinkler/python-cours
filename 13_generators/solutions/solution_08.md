@@ -17,17 +17,32 @@ contents is to consume them — which means the code after your inspection gets 
 
 **b) The traceback**
 
-The chain is there, and better than people expect. Measured, a pipeline of two
-generators raising from the innermost gives:
+The chain is there, and better than people expect. Measured, with the pipeline built
+in one function and consumed in another:
+
+```python
+def build():
+    return middle(inner())      # nothing runs here
+
+
+def consume(pipeline):
+    return list(pipeline)       # everything runs here
+
+
+consume(build())
+```
 
 ```
-File "...", line 11, in <module>      <- list(middle(inner()))
-File "...", line 6, in middle         <- the `for v in source` line
-File "...", line 3, in inner          <- the raise
+File "...", line 20, in <module>     <- consume(build())
+File "...", line 16, in consume      <- the list(pipeline) line
+File "...", line 7,  in middle       <- the `for v in source` line
+File "...", line 3,  in inner        <- the raise
 ValueError: kaputt
 ```
 
-Every stage appears, innermost last, exactly as module 09 said to read it.
+Every stage of the pipeline appears, innermost last, exactly as module 09 said to
+read it. What is missing is `build`: the function that assembled the pipeline has no
+frame at all.
 
 What is genuinely different is **which line of your code is at the top**. It is the
 line that *consumed* the pipeline — `list(...)`, or a `for` loop, or `sum(...)` —

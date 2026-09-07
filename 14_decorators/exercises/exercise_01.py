@@ -1,6 +1,6 @@
 """Exercise 01 -- A function is a value.
 
-No decorators yet. Six prints, in this order:
+No decorators yet. Five prints, in this order:
 
   1. `converter(21.7)`, where `converter` is another name for the conversion function
   2. the result of applying each of `celsius_to_fahrenheit`, `abs` and `round` to -2.5,
@@ -29,4 +29,4 @@ def celsius_to_fahrenheit(value):
     return value * 1.8 + 32
 
 
-# TODO: apply_twice, scaler, then the five prints
+# TODO: apply_twice, scaler, then five prints

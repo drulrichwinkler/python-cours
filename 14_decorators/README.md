@@ -12,9 +12,10 @@ out to be one idea underneath: **a function is a value.**
 
 - **`@thing` is an assignment.** `@loud` above `def add` means `add = loud(add)`. Nothing more —
   and once you read it that way, every decorator in this course becomes ordinary.
-- **Java annotations are not this.** `@Override` is metadata that something reads later. A Python
-  decorator runs at import and **replaces the object**: the name no longer refers to the function
-  you wrote. That is why `@app.route("/")` in module 21 works the way it does.
+- **Java annotations are not this.** `@Override` is metadata the compiler checks. A Python
+  decorator *runs* when the `def` is executed, and what it returns is bound to the name — it may
+  replace the function (`@loud`) or register it and hand it back unchanged (`@app.route("/")` in
+  module 21). Either way it has run, which is what an annotation does not do.
 - **The wrapper loses the name, the docstring and the signature** — so every traceback in the
   program says `wrapper`. `@functools.wraps` is the one line that fixes it, and it belongs on
   every wrapper you write.

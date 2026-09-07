@@ -17,7 +17,7 @@ with_return()    is [1]. The return value is not yielded; it goes into the
                  StopIteration, where only `yield from` picks it up. A caller doing
                  the obvious thing never sees it.
 groupby          gives keys [1, 2, 1] -- it groups CONSECUTIVE equal items, like
-                 the Unix uniq it is named after. Sort first if you meant all of
+                 the Unix uniq. Sort first if you meant all of
                  them.
 """
 
