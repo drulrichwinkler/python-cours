@@ -5,7 +5,8 @@ name is ...      is True against the other literal: the compiler keeps one objec
                  `built` is assembled at runtime and is a different object, so
                  `is` is False there -- while `==` is True either way, because ==
                  looks at content.
-tag.strip()      hands back the same object when there is nothing to strip; an
+tag.strip()      hands back the same object when there is nothing to strip -- CPython
+                 is allowed to, not required to; an
                  optimisation you are not meant to notice, and one more reason
                  `is` is the wrong question for strings. .upper() builds a new
                  object even when the text is already upper case.

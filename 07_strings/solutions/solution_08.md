@@ -18,10 +18,11 @@ Eight characters, nine bytes.
 
 What had to be known for the conversion: **the encoding.** Bytes on their own do not
 say how to be read; `b"\xc3\x9c"` is `Ü` in UTF-8 and two separate junk characters in
-Latin-1. There is no reliable default across systems — Python 3.15 makes UTF-8 the
-default for opening files, and older versions ask the operating system, which is
-where "works on my machine" comes from. Naming it, as `encoding="utf-8"` in module
-08, is how you stop guessing.
+Latin-1. There is no reliable default across systems: `open()` without `encoding=` asks the
+operating system, which is where "works on my machine" comes from. PEP 686 will make
+UTF-8 the default in a future version — until then, and for anything that has to run
+on an older one, naming it as `encoding="utf-8"` (module 08) is how you stop
+guessing.
 
 **c) Both sides of the trade**
 

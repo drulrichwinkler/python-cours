@@ -15,9 +15,11 @@ opposite of what they mean in Java.**
 
 Four semesters of `str1 == str2` being a reference comparison have to be unlearned here, and the
 reason it is hard is that Python makes the wrong habit look right: `is` on two string literals
-comes back `True`, so the first test passes. It stops being `True` the moment the string was
-built at runtime — read from a file, joined, or typed by a user. That is the shape of every bug
-this produces: it works on your machine and fails on real data.
+**in the same file** comes back `True`, so the first test passes. Whether it keeps saying `True`
+then depends on things that have nothing to do with your logic — whether the two literals are in
+one file, whether the value happens to be spelled like an identifier, and whether it was built at
+runtime. That is the shape of every bug this produces: it works on your machine and fails on real
+data.
 
 The rest:
 

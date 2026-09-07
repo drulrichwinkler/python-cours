@@ -17,7 +17,7 @@ Expected output:
 
 Hint: the format spec goes after a colon. `<` `>` `^` align, a character before
 them is the padding, `.2f` fixes the decimals, `.1%` multiplies by 100 and adds the
-sign. The fourth line is `f"{value=}"`.
+percent sign. The fourth line is `f"{value=}"`.
 """
 
 tag = "TH-04"

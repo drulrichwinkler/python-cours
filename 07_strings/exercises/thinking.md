@@ -19,13 +19,17 @@ built == a      # True
 
 a) Say what `is` is actually asking, and why the first answer is `True` without
    anything about strings being special.
-b) A colleague writes `if tag is "TH-04":` and their unit test passes. Describe the
-   first situation in production where it stops working, and say why no amount of
-   testing with values written in the source would have found it.
+b) A colleague writes `if state is "open":` and their unit test passes — the test
+   is in its own file, and it still passes. Describe the first situation in
+   production where it stops working, and say why no amount of testing with values
+   written in the source would have found it. Then say what happens to the same bug
+   if the value is spelled `"in-progress"` instead, and why that is worse rather
+   than better.
 c) `is` is not useless. Name the one comparison where it is the correct operator and
    `==` is not, and say why.
 
-> **Hint on (b):** where do tags come from in a program that is actually running?
+> **Hint on (b):** where do states come from in a program that is actually running?
+> And: which characters may appear in a Python identifier?
 > **Hint on (c):** there is exactly one of a certain object in a Python process.
 
 **Check yourself:** your answer to (a) has to explain the `True` without using the
