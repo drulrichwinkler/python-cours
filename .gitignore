@@ -9,3 +9,6 @@ __pycache__/
 # list. Author's working material, in German -- deliberately not published in the
 # students' repository. Kept locally.
 docs/
+# A database is a build artefact: 19_sql/build_db.py makes it from the CSV
+# files next to it, which are the source.
+19_sql/data/readings.db
