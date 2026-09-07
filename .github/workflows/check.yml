@@ -33,6 +33,12 @@ jobs:
       - name: Module 15 has its model suite
         run: test -f 15_testing/solutions/suite/test_parsing.py
 
+      # Module 19's database is gitignored -- it is a build artefact made from the
+      # two CSV files next to it. This has to come before the tests: a fresh clone
+      # has the CSV files and no database, and module 19's tests read the database.
+      - name: Build module 19's database
+        run: uv run 19_sql/build_db.py
+
       # Every model solution must pass the same test its exercise does.
       # The `your_turn` tests are excluded -- they are meant to be red in a fresh clone.
       - name: Tests (model solutions)
@@ -46,11 +52,6 @@ jobs:
 
       - name: Format
         run: uv run ruff format --check .
-
-      # Module 19's database is gitignored -- it is a build artefact made from the
-      # two CSV files next to it. Nothing after this point would work without it.
-      - name: Build module 19's database
-        run: uv run 19_sql/build_db.py
 
       # Every notebook must run top to bottom -- explore and selfcheck alike.
       # Cells that fail on purpose carry the `raises-exception` tag.
