@@ -4,9 +4,10 @@ b.seen           is ['TH-01', 'TH-04']. `seen` was assigned in the class body, s
                  there is one list and every instance reaches the same one. This is
                  module 04's mutable default argument, one floor up.
 a.kind           is 'hygrometer' and b.kind and Sensor.kind are both 'thermometer'.
-                 Assignment always writes to the instance, so it created a new
-                 attribute on `a` that shadows the class one. Reading looks at the
-                 instance first and the class second; writing does not.
+                 Assignment writes to the instance -- a property with a setter is
+                 the exception -- so it created a new attribute on `a` that shadows
+                 the class one. Reading looks at the instance first and the class
+                 second; writing does not.
 a.__dict__       is ['kind', 'tag'] -- the instance carries only what was assigned
                  to it, which after the line above includes its own `kind`.
 hasattr(a, ...)  is False. `b.calibrated = True` created an attribute on that one

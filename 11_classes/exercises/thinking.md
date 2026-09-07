@@ -16,7 +16,7 @@ public double getCelsius() { return celsius; }
 ```
 
 In Python the same class starts as `self.celsius = celsius`, and nobody writes an
-accessor until there is something to accompute.
+accessor until there is something to compute.
 
 a) Say precisely what the Java advice is protecting against — what change, later,
    would be expensive without it?

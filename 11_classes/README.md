@@ -16,14 +16,14 @@ expensive part.
 - **A class attribute is one object, shared.** If it is mutable, every instance shares the
   changes — module 04's mutable default argument, one floor up. Reading and writing are not
   symmetric: `a.kind = x` never changes the class.
-- **There is no `private`.** `_name` is a convention that every reader honours and nothing
-  enforces; `__name` is name mangling, which exists to stop subclass collisions and not to keep
+- **There is no `private`.** `_name` is a convention that tools honour and nothing enforces; `__name` is name mangling, which exists to stop subclass collisions and not to keep
   anyone out.
 - **No getters.** In Java you write one in case the field becomes computed later. Here the call
   site is `sensor.value` either way, so you start with a plain attribute and add `@property` on
   the day you need it — without touching a single caller.
 - **`__repr__` for you, `__str__` for the user.** A container always shows the repr, which is why
-  an object with only a `__str__` still prints as `<object at 0x...>` inside a list.
+  an object with only a `__str__` still prints as `<__main__.Reading object at 0x...>` inside a
+  list.
 - **`==` is identity until you write `__eq__`** — and writing it makes the class unhashable,
   which is module 06's rule about keys being enforced rather than explained.
 

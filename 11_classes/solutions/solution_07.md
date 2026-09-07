@@ -29,10 +29,20 @@ Python code that has them reads as translated Java.
 What the Java version gives you that `@property` does not: **a stable signature to
 override and to mock.** `getCelsius()` is a method from the first day, so a subclass
 overrides it the ordinary way, an interface can declare it, and a test double can
-replace it without anyone caring how it was implemented. A property is overridable
-too, but the subclass has to know it is a property — replacing it with a plain
-attribute in a subclass works, and replacing a plain attribute with a property in a
-subclass also works, and the two directions behave differently under `super()`.
+replace it without anyone caring how it was implemented.
+
+A property is overridable, but not symmetrically, and the asymmetry is worth
+measuring rather than assuming:
+
+- A subclass **can** shadow a parent's property with a plain class attribute in its
+  class body — `celsius = 99` works and wins.
+- It **cannot** go the other way. If the parent's `__init__` writes
+  `self.celsius = ...` and the subclass turns `celsius` into a read-only property,
+  construction itself raises `AttributeError: property 'celsius' of 'Sub' object has
+  no setter`.
+- And `super().celsius = value` does not work at all: `super()` delegates reads to the
+  parent's property and has no path for writes —
+  `AttributeError: 'super' object has no attribute 'celsius'`.
 
 Where starting plain really does cost you: **when something already holds the value.**
 If callers have written `reading.celsius` into a dict, pickled the object, or built a
