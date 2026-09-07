@@ -33,9 +33,14 @@ select = ["E", "F", "I", "UP"]
 # point: module 01 uses it to show that the type belongs to the value, not the name.
 ignore = ["UP003"]
 
+[tool.ruff.lint.per-file-ignores]
+# An exercise skeleton calls the function the student has yet to write. F821 is
+# the correct diagnosis and the wrong complaint: the file is unfinished by design.
+"*/exercises/exercise_*.py" = ["F821"]
+
 [tool.pytest.ini_options]
 addopts = "--import-mode=importlib"
-testpaths = ["00_setup", "01_basics", "02_operators", "03_control_flow"]
+testpaths = ["00_setup", "01_basics", "02_operators", "03_control_flow", "04_functions"]
 markers = [
     "your_turn: checks YOUR solution -- red until you have finished the exercise",
 ]
