@@ -147,7 +147,8 @@ over: as a web page, a data app, an API, a desktop window and a terminal interfa
 | 04 Functions     | ✅ complete |
 | 05 Lists, tuples | ✅ complete |
 | 06 Dicts, sets   | ✅ complete |
-| 07–26            | ⬜ planned  |
+| 07 Strings       | ✅ complete |
+| 08–26            | ⬜ planned  |
 
 Modules are added in order. If something in an existing one is wrong, unclear or simply
 annoying, open an issue — that is the fastest way for the course to get better.

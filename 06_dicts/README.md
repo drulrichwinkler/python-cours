@@ -51,4 +51,5 @@ then spends its time on the thing that answer makes possible.
 `collections.Counter` counts in one line, and `collections.defaultdict` groups in one. Both are
 worth having, and neither is in this module: what belongs here is the language-level answer, so
 that you can read the `get`/`setdefault` version in somebody else's code and write it where a
-dependency on `collections` is not warranted. Module 10 has the stdlib.
+dependency on `collections` is not warranted. Module 10 is where importing from the standard
+library is the subject.
