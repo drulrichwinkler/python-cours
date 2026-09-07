@@ -22,9 +22,10 @@ Expected output:
     status at 20: 18 of 18 readings above 20.0
     watcher calls: 2
 
-Line 5 says 2 for two assignments. That is what `init=False` in `app.py` buys: without
-it Textual calls the watcher once during initialisation as well, before `compose` has
-yielded anything -- and `redraw` would then look for a table that does not exist yet.
+Line 5 says 2, one per assignment. That is what `init=False` in `app.py` buys:
+without it Textual calls the watcher once during initialisation, before `compose` has
+yielded anything, and `redraw` would look for a table that does not exist yet -- so
+the app would not start rather than counting to three.
 
 Hint: count the calls by wrapping the existing watcher. `original = app.watch_limit`,
 then assign a function to `app.watch_limit` that appends to a list and calls

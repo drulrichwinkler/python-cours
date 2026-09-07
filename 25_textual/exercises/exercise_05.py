@@ -35,9 +35,7 @@ depends on where the wall clock falls relative to the double-click window. The
 about the machine's timing -- module 22's flaky test, again.
 
 So: **press keys, or space your clicks, and never assert on a sequence whose order a
-clock decides.** The contrast with module 24 is worth holding on to. There the answer
-changed with the environment and could not be relied on at all; here it is
-understood, and a reliable measurement is available.
+clock decides.**
 
 Hint: `drive` and `moves` below are written for you. `drive("key")`, `drive("click")`
 and `drive("click", gap=0.3)` are the runs you need, plus one more by key for line 2.

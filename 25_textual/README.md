@@ -54,8 +54,10 @@ Nothing registers that. There is no `command=` and no decorator: the method is c
 what it is called. Keys work the same way — `BINDINGS = [("n", "next_location", "Next
 location")]` finds `action_next_location`.
 
-Which is a third answer to a question the course has now answered four times, and three of the
-four can fail in silence. Measured:
+Which is the third *mechanism* the course has shown, across four module answers — a decorator
+(21 and 23), an argument passed at construction (24), and the method's name (25). Streamlit's
+answer is the fourth and it is "nothing to register". Three of the four can fail in silence.
+Measured:
 
 | module | how | the silent failure |
 | --- | --- | --- |
@@ -81,8 +83,9 @@ that Textual then calls `watch_limit`, so the redraw is a **consequence** of the
 rather than something the assigning code has to remember.
 
 `init=False` matters and is not guessable. Without it Textual calls the watcher once during
-initialisation — measured, `watch_limit(85.0, 85.0)` before anything exists — and a `redraw`
-that queries for the table then fails, because `compose` has not yielded it yet.
+initialisation — measured: it runs at construction time, with the old and the new value both
+85.0, before anything is on screen. A `redraw` that queries for the table then fails, because
+`compose` has not yielded it yet, and the app does not start.
 
 ## The test client that works, and why it can
 

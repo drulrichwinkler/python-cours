@@ -18,13 +18,16 @@ Expected output:
     run_test re-raised: True
     output before it: reached the click
 
-Then run the file yourself and look at the exit code:
+Note that this file has to catch the exception in order to report line 2, so its own
+exit code is 0. Take the `try` away and let it through, and the process ends with
 
-    uv run python 25_textual/solutions/solution_06.py > /dev/null; echo $?
+    RuntimeError is not what you get. It is the ValueError, and:
+    $ echo $?
+    1
 
-It is **1**, and the traceback names the real frame -- `on_button_pressed`, in your
-file, at the line that raised. That is the opposite of module 24 on every count, from
-one identical bug.
+Measured. The traceback names the real frame -- `on_button_pressed`, in your file, at
+the line that raised. That is the opposite of module 24 on every count, from one
+identical bug.
 
 Neither choice is wrong. Tk keeps a window alive that a person has typed into, and
 Textual refuses to keep running an interface it can no longer trust. What matters is

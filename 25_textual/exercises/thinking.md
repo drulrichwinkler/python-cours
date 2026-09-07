@@ -7,11 +7,13 @@ Two here have no code to write. The rest are `exercises/exercise_*.py`, checked 
 
 ## Exercise 07 — Four ways to say "call this"
 
-The course has now registered a callback four times, four different ways:
+The course has registered a callback three different ways, across four module answers —
+a decorator, an argument passed at construction, and the method's name. Streamlit's
+answer is the fourth and it is "nothing to register":
 
 | module | how | what registers it |
 | --- | --- | --- |
-| 21 Flask | `@app.get("/summary")` | a decorator, run at import |
+| 21 Flask, 23 FastAPI | `@app.get("/summary")` | a decorator, run at import |
 | 22 Streamlit | nothing | there is no callback; the script re-runs |
 | 24 tkinter | `command=self.refresh` | an argument, passed at construction |
 | 25 Textual | `def on_button_pressed` | the method's **name** |

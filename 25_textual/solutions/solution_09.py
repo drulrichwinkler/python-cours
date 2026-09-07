@@ -43,7 +43,7 @@ class FaultApp(App[None]):
         self.limit += 2.0
 
     def watch_limit(self) -> None:
-        """Called by Textual after `self.limit` is assigned to. Nothing calls this."""
+        """Called by Textual after `self.limit` is assigned to. No line here calls it."""
         self.redraw()
 
     def redraw(self) -> None:

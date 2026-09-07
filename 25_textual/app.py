@@ -50,8 +50,8 @@ class SensorApp(App[None]):
     # 24's StringVar did the same job through a trace; this needs no wrapper object,
     # and `self.limit` is a float rather than a string.
     # `init=False` matters. Without it Textual calls the watcher once during
-    # initialisation -- measured: `watch_limit(85.0, 85.0)` before anything is on
-    # screen -- and `redraw` would then look for a table that `compose` has not
+    # initialisation -- measured: the watcher runs once at construction, before
+    # anything is on screen -- and `redraw` would then look for a table that `compose` has not
     # yielded yet. The startup redraw happens in `on_mount` instead, which is the
     # first moment the widgets exist.
     limit: reactive[float] = reactive(LIMIT, init=False)

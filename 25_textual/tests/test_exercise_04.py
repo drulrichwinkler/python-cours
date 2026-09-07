@@ -2,8 +2,10 @@
 
 You are meant to read this file: it says exactly what your exercise has to do.
 
-The count in the last line is 2 for two assignments, and `init=False` in `app.py`
-is what makes it 2 rather than 3.
+The count in the last line is 2, one per assignment. `init=False` in `app.py` is why
+there is no third: without it Textual calls the watcher once at construction time,
+`redraw` would look for a `DataTable` that `compose` has not yielded yet, and the app
+would not start at all.
 """
 
 from pathlib import Path
