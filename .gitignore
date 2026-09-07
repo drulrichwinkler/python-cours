@@ -3,6 +3,7 @@ __pycache__/
 *.pyc
 .pytest_cache/
 .ruff_cache/
+.mypy_cache/
 .DS_Store
 
 # Planning notes: the didactic review, the course structure and the LPTHW gap
