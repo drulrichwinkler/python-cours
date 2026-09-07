@@ -5,11 +5,12 @@
 What each function contributes:
 
 - **`parse_line`** has the most surface: it splits, it strips, it converts, and it
-  has three separate ways to refuse. Six of the twelve tests are here, and that is
+  has three separate ways to refuse. Five of the twelve tests are here, and that is
   proportionate — every `raise` in the code is a promise, and a promise nobody tests
   is a promise nobody keeps.
-- **`mean`** has one line of logic and one edge: nothing. Three tests — the ordinary
-  case, the float case, and the empty case.
+- **`mean`** has one line of logic and one edge: nothing. Four tests — the ordinary
+  case, the float case, the empty case, and the one that passes a generator, because
+  `list(values)` on the first line is a promise too.
 - **`readings_above`** is a one-line comprehension whose entire risk is the
   comparison operator. Three tests, one of which is the boundary.
 

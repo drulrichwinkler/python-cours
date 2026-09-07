@@ -20,8 +20,8 @@ you `Â°C` without a word. Module 08's silent failure, from a different directi
   long as the other side keeps the socket open. A program that hangs with no traceback is worse
   to debug than one that crashes, and this is the usual way to write one.
 - **Two kinds of failure.** The server answered badly (`HTTPError`, and only if you asked), or
-  nobody answered (`ConnectionError`, `Timeout` — those raise by themselves). Only one of the two
-  is ever worth retrying.
+  nobody answered (`ConnectionError`, `Timeout` — those raise by themselves). Retrying helps for
+  the second, and for exactly three status codes of the first.
 - **`params=` encodes for you**, and reading what it produced is instructive: a space becomes
   `+`, `°` becomes `%C2%B0`, an `&` in a value becomes `%26`. Every one of those is a rule you
   would get wrong by hand.
@@ -36,8 +36,8 @@ with serve() as base:
     response = requests.get(f"{base}/readings.csv", timeout=5)
 ```
 
-Read it. It is nine lines of logic and it is the other side of every request you make here; the
-routes are listed in its docstring. Two of them serve **the same bytes** with different
+Read it. It is a request handler, a six-route dispatch and a context manager, and it is the
+other side of every request you make here; the routes are listed in its docstring. Two of them serve **the same bytes** with different
 `Content-Type` headers, which is what section 3 is built on. Module 20 comes back to what a port
 actually is.
 

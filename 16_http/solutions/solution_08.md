@@ -50,9 +50,8 @@ fraction so that a thousand clients do not all return at the same instant.
 **c) GET against the database write**
 
 The difference is **idempotence**, which is exactly what module 14's exercise turned
-on. A GET is *defined* to be idempotent and safe: RFC 9110 says it must not have
-side effects beyond retrieval, so sending it twice leaves the server as it was and the
-timeout case — where the first attempt may have succeeded and only the reply was lost —
+on. RFC 9110 calls GET *safe* — essentially read-only — and *idempotent*: sending it
+twice leaves the server as it was, so the timeout case — where the first attempt may have succeeded and only the reply was lost —
 costs nothing. The database write in module 14 had no such guarantee, which is why
 retrying it could insert three rows.
 

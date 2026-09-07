@@ -1,7 +1,8 @@
 """A tiny HTTP server, so this module needs no network.
 
-Read this file: it is nine lines of logic and it is the other side of every
-request you will make. Module 20 comes back to what a port actually is.
+Read this file: a request handler, a dispatch over six routes, and a context
+manager. It is the other side of every request you will make here, and module 20
+comes back to what a port actually is.
 
 Used as a context manager (module 09), so the server is always shut down:
 

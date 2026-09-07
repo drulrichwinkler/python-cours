@@ -40,12 +40,16 @@ lesson is that a default chosen early is close to permanent.
 - **When the body is not text.** `.content.decode(...)` on a PNG or a gzip stream is a
   category error you would notice; `.text` on the same bytes produces a long
   meaningless string instead, because Latin-1 cannot refuse.
-- **When part of the body is not valid UTF-8.** Measured: `b"...\xff\xfe".decode("utf-8")`
-  raises `UnicodeDecodeError`, and that is the outcome you want — it names the
-  position of the bad byte. `.text` after `response.encoding = "utf-8"` raises the
-  same way, so those two agree. What differs is your options: with `.content` in hand
-  you can also write `.decode("utf-8", errors="replace")` and get `TH-01;21.7;��`,
-  keeping the good part and marking the bad. `.text` gives you no such control.
+- **When part of the body is not valid UTF-8**, and this one is the other way round
+  from what you would guess. Measured, with `response.encoding = "utf-8"` set:
+  `.text` gives `'TH-01;21.7;��'` and **raises nothing at all**, because
+  `Response.text` decodes with `errors="replace"` — it is written that way in
+  `requests`. `response.content.decode("utf-8")` on the same bytes raises
+  `UnicodeDecodeError` and names the position of the bad byte.
+
+  So setting `response.encoding` fixes the encoding and keeps the silence.
+  `.content.decode(...)` is the one that can refuse, and `errors="replace"` is then
+  something you ask for rather than something you get.
 - **When you want the bytes for anything else** — a hash, a byte count, writing them
   straight to a file. `.text` has already thrown the original away.
 

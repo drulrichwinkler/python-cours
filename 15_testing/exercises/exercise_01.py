@@ -25,7 +25,8 @@ import sys
 from pathlib import Path
 
 MODULE = Path(__file__).resolve().parent.parent
-sys.path.append(str(MODULE))  # append, not insert: see tests/test_exercise_03.py
+sys.path.append(str(MODULE))  # append, not insert: the check runs this file with a
+# broken copy of sensorlib on PYTHONPATH, and insert(0, ...) would shadow it
 
 from sensorlib.parsing import mean, parse_line  # noqa: E402
 
