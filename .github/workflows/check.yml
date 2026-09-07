@@ -21,6 +21,12 @@ jobs:
           done
           exit $fail
 
+      # Module 15's exercise 09 is a test suite the student writes. A fresh clone
+      # has an empty folder there, and that is correct -- but an empty folder is
+      # also what a lost directory looks like, so check the model suite is present.
+      - name: Module 15 has its model suite
+        run: test -f 15_testing/solutions/suite/test_parsing.py
+
       # Every model solution must pass the same test its exercise does.
       # The `your_turn` tests are excluded -- they are meant to be red in a fresh clone.
       - name: Tests (model solutions)

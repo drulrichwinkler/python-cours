@@ -155,7 +155,8 @@ over: as a web page, a data app, an API, a desktop window and a terminal interfa
 | 12 Inheritance, dataclass | ✅ complete |
 | 13 Generators    | ✅ complete |
 | 14 Decorators    | ✅ complete |
-| 15–26            | ⬜ planned  |
+| 15 Testing       | ✅ complete |
+| 16–26            | ⬜ planned  |
 
 Modules are added in order. If something in an existing one is wrong, unclear or simply
 annoying, open an issue — that is the fastest way for the course to get better.

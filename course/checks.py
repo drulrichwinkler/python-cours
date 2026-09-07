@@ -8,13 +8,24 @@ there, so the exercise, its solution and its test can never drift apart.
 from __future__ import annotations
 
 import importlib.util
+import os
 import subprocess
 import sys
 import textwrap
+from collections.abc import Iterable
 from pathlib import Path
 from types import ModuleType
 
-__all__ = ["expected_output", "run_file", "assert_output", "assert_runs", "load_module"]
+__all__ = [
+    "expected_output",
+    "run_file",
+    "assert_output",
+    "assert_runs",
+    "load_module",
+    "run_suite",
+    "assert_suite_finds_bugs",
+    "assert_file_finds_bugs",
+]
 
 _MARKER = "Expected output:"
 
@@ -93,3 +104,99 @@ def load_module(path: Path | str) -> ModuleType:
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)
     return module
+
+
+def run_suite(suite: Path | str, implementation: Path | str) -> subprocess.CompletedProcess[str]:
+    """Run a pytest suite against one particular implementation.
+
+    `implementation` is a directory containing the package the suite imports. It
+    goes first on the import path, so a mutant shadows the correct version.
+    Used by module 15, where the exercise is the test suite itself.
+    """
+    suite = Path(suite)
+    env = dict(os.environ)
+    env["PYTHONPATH"] = os.pathsep.join(
+        [str(Path(implementation).resolve()), env.get("PYTHONPATH", "")]
+    )
+    return subprocess.run(
+        [sys.executable, "-m", "pytest", "-q", "-p", "no:cacheprovider", str(suite)],
+        capture_output=True,
+        text=True,
+        env=env,
+        check=False,
+    )
+
+
+def assert_suite_finds_bugs(
+    suite: Path | str, correct: Path | str, mutants: Iterable[Path | str]
+) -> None:
+    """Assert that a test suite passes on correct code and fails on broken code.
+
+    A suite that passes everywhere tests nothing. This is what turns "write some
+    tests" into a check with a red and a green: every mutant has to be caught by
+    at least one test.
+    """
+    suite = Path(suite)
+    if not any(suite.glob("test_*.py")):
+        raise AssertionError(f"no test_*.py in {suite} -- there is nothing to run yet")
+
+    green = run_suite(suite, correct)
+    if green.returncode != 0:
+        raise AssertionError(
+            "your tests do not pass against the correct implementation:\n\n"
+            f"{green.stdout.strip()}\n{green.stderr.strip()}"
+        )
+
+    missed = []
+    for mutant in mutants:
+        mutant = Path(mutant)
+        result = run_suite(suite, mutant)
+        if result.returncode == 0:
+            missed.append(mutant.name)
+
+    if missed:
+        raise AssertionError(
+            "your tests pass against broken code, so they would not have caught the bug.\n"
+            f"not caught: {', '.join(sorted(missed))}\n"
+            "Each of those folders holds the same library with one thing changed."
+        )
+
+
+def assert_file_finds_bugs(
+    path: Path | str, correct: Path | str, mutants: Iterable[Path | str]
+) -> None:
+    """Assert that a file of assertions passes on correct code and fails on broken code.
+
+    Like assert_suite_finds_bugs, for a plain script rather than a pytest suite --
+    module 15's exercise 03, where the job is to repair tests that cannot fail.
+    """
+    path = Path(path)
+
+    def run(implementation: Path | str) -> subprocess.CompletedProcess[str]:
+        env = dict(os.environ)
+        env["PYTHONPATH"] = os.pathsep.join(
+            [str(Path(implementation).resolve()), env.get("PYTHONPATH", "")]
+        )
+        return subprocess.run(
+            [sys.executable, str(path)],
+            capture_output=True,
+            text=True,
+            env=env,
+            check=False,
+        )
+
+    green = run(correct)
+    if green.returncode != 0:
+        raise AssertionError(
+            f"{path.name} does not pass against the correct implementation:\n\n"
+            f"{green.stdout.strip()}\n{green.stderr.strip()}"
+        )
+
+    missed = [Path(mutant).name for mutant in mutants if run(mutant).returncode == 0]
+    if missed:
+        raise AssertionError(
+            f"{path.name} passes against broken code, so its assertions do not "
+            "demand anything.\n"
+            f"not caught: {', '.join(sorted(missed))}\n"
+            "Each of those folders holds the same library with one thing changed."
+        )
