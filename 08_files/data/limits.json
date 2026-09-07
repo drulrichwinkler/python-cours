@@ -1,0 +1,9 @@
+{
+  "default": {"low": -20.0, "high": 85.0},
+  "sensors": {
+    "TH-04": {"low": -20.0, "high": 95.0},
+    "TH-02": {"low": 0.0, "high": 85.0}
+  },
+  "unit": "C",
+  "strict": true
+}
