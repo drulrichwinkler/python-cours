@@ -17,9 +17,17 @@ that no longer follows the dict, which is exactly the point.
 **b) Why both languages refuse**
 
 Because the loop is walking a structure while the structure is being rearranged. A
-dict has a fixed number of slots; adding an entry can make it outgrow them, and then
-everything is moved into a larger table. The position the loop was holding no longer
-means anything: entries can be skipped, seen twice, or the walk can run off the end.
+dict holds its entries in a table and the loop holds a position in that table. Add a
+key and the table may have to grow, which moves everything into a larger one; delete
+a key and the entry the loop was about to reach may no longer be where it was. Either
+way the position stops meaning what it meant, and entries can be skipped or seen
+twice.
+
+The check is on the keys, not on the count, and the two cases have their own
+messages: `dictionary changed size during iteration` when the number of entries
+changed, `dictionary keys changed during iteration` when one key was removed and
+another added in the same pass. Replacing the value of an existing key touches
+neither and is allowed.
 
 The alternative is what the concurrent collections do: iterate over a snapshot, or
 keep the old table alive until every iteration over it has finished. Both cost memory
@@ -36,13 +44,15 @@ it somewhere else.
 **c) Replacing against adding**
 
 `readings[tag] = 99.9` on a key that is already there writes into the slot that key
-already occupies. Nothing moves, the number of entries is the same, and the loop's
+already occupies. Nothing moves, the set of keys is what it was, and the loop's
 position still means what it meant.
 
 Adding a key needs a slot that is not in use, and can push the dict past the point
-where it grows the table and moves everything. That is why the check is on the size —
-`dictionary changed size during iteration` — and not on the contents. Deleting has
-the same problem for the same reason and raises the same error.
+where it grows the table and moves everything. Deleting one takes an entry out from
+under a loop that has not reached it yet. Both change the answer to "which keys are
+there", which is what the loop was told at the start — so both are refused, and a
+swap that keeps the count is refused too, with the message that names keys rather
+than size.
 
 Hence the standard move when a loop has to add or delete: iterate over a snapshot,
 `for tag in list(readings):`, and leave the dict free to change underneath.

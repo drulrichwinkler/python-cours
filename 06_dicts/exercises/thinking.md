@@ -58,12 +58,13 @@ b) The `RuntimeError` is Python's version of Java's
    `ConcurrentModificationException`, and `Map.keySet()` is a view in Java too. Say
    why both languages arrived at the same answer — what would the alternative have
    to do?
-c) Replacing the value of a key that already exists during the loop is allowed, and
-   adding a key is not. Explain the distinction from what the loop has to keep track
-   of.
+c) Replacing the value of a key that already exists during the loop is allowed;
+   adding one is not, and neither is removing one key and adding another in the same
+   pass — that last one keeps the count and still raises, with a different message.
+   Explain the distinction from what the loop has to keep track of.
 
-> **Hint on (c):** the loop holds a position in a structure whose size it was told
-> when it started. Which of the two operations can move the other entries?
+> **Hint on (c):** the loop holds a position in a table. Which of the operations can
+> move an entry it has not reached yet, and which one leaves every entry where it is?
 
 **Check yourself:** your answer to (b) has to say what the language would have to
 give up to make the loop safe instead of loud.
