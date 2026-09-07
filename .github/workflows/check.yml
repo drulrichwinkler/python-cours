@@ -33,6 +33,14 @@ jobs:
       - name: Module 15 has its model suite
         run: test -f 15_testing/solutions/suite/test_parsing.py
 
+      # Module 24 is a window, and ubuntu-latest has neither the tkinter binding nor
+      # a screen. Measured on a probe run: `import tkinter` raises until python3-tk
+      # is installed, and Tk() then needs a DISPLAY, which xvfb provides without a
+      # monitor attached. Module 24's tests skip themselves when there is no display,
+      # so this is what makes them actually run here rather than quietly pass.
+      - name: A display for module 24
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq python3-tk xvfb
+
       # Module 19's database is gitignored -- it is a build artefact made from the
       # two CSV files next to it. This has to come before the tests: a fresh clone
       # has the CSV files and no database, and module 19's tests read the database.
@@ -42,7 +50,7 @@ jobs:
       # Every model solution must pass the same test its exercise does.
       # The `your_turn` tests are excluded -- they are meant to be red in a fresh clone.
       - name: Tests (model solutions)
-        run: uv run pytest -m "not your_turn"
+        run: xvfb-run -a uv run pytest -m "not your_turn"
 
       - name: Types
         run: uv run mypy
@@ -59,5 +67,5 @@ jobs:
         run: |
           for f in */*.ipynb; do
             echo "--- $f"
-            uv run jupyter nbconvert --to notebook --execute --stdout "$f" > /dev/null
+            xvfb-run -a uv run jupyter nbconvert --to notebook --execute --stdout "$f" > /dev/null
           done
