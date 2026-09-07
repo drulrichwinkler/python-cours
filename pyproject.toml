@@ -40,7 +40,7 @@ ignore = ["UP003"]
 
 [tool.pytest.ini_options]
 addopts = "--import-mode=importlib"
-testpaths = ["00_setup", "01_basics", "02_operators", "03_control_flow", "04_functions", "05_lists"]
+testpaths = ["00_setup", "01_basics", "02_operators", "03_control_flow", "04_functions", "05_lists", "06_dicts"]
 markers = [
     "your_turn: checks YOUR solution -- red until you have finished the exercise",
 ]
