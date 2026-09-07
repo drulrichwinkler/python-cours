@@ -31,13 +31,14 @@ and one or two of the criteria will already be obvious.
   myreport/            a package: __init__.py and whatever else you need
   tests/               your tests
   present.py           one presentation, from Part 5
-  README.md            yours -- see the last criterion
+  README.md            yours -- see the last question below
 ```
 
 `myreport` has to expose exactly this, because `check.py` calls it:
 
 ```python
 Reading                     # a dataclass: tag, value, location, limit, at
+Reading.is_fault            # a property: True when this reading is above its limit
 Summary                     # a dataclass: location, readings, usable, mean, highest, faults
 load(data_dir) -> list[Reading]
 summarise(readings) -> list[Summary]
@@ -76,7 +77,14 @@ of the project.
   cell could not be read. Not `0.0`, and not the string that was there.
 - `limit` on a `Reading` is **that sensor's** limit from `sensors.json`, not one
   constant for the whole file.
-- A reading is a fault when its value is **above** its limit. Not at it.
+- A reading is a fault when its value is **above** its limit. Not at it. That test is
+  `Reading.is_fault`, a property -- `check.py` asks each reading directly.
+- `at` is the **string** from the file, `"2026-04-01T08:00"`. Parsing it to a
+  `datetime` is a defensible thing to do inside your code and a wrong thing to put in
+  this field, because the criteria compare it to that string.
+- `limit` is in **degrees Celsius**, like `value`, even for the two sensors whose
+  `unit` in `sensors.json` is `F`. Their limits are already Celsius; it is the
+  readings that need converting.
 - `mean` is over the readings that have a value, rounded to two decimal places, and
   `None` when there are none.
 - `summarise` is sorted by location. `faults` is worst first.
@@ -104,7 +112,7 @@ Four of the twenty-four are not about the data:
 
 Criterion 24 only reads the file. Whether the presentation is any good is not
 something a script can tell you, which is why `check.py` ends by listing what it
-cannot check. That list is not shorter than the other one.
+cannot check.
 
 ## Where each part of the course comes in
 
@@ -114,7 +122,7 @@ Not a hint list — a map, so you know which module to reopen when you get stuck
 | --- | --- |
 | one file will not decode | **08** — and the error names the byte, not the file |
 | `21,4` is not a float | **23** — one unambiguous reading of the whole string, or refuse |
-| a value that could not be read | **09** — `except ValueError`; and **18**, for what `n/a` becomes |
+| a value that could not be read | **09** — `except ValueError`; **18** for what `n/a` becomes |
 | the two CSVs have different columns and delimiters | **08** — `DictReader`, not indices |
 | joining readings to sensors | **06** — and **19**, for what a missing key means |
 | a sensor with no readings at all | **19** — the row a plain `JOIN` loses |
@@ -142,8 +150,8 @@ code.
 
 ## When you are finished
 
-Delete `check.py` from your thinking and read your own README instead. It is the last
-criterion, and the only one nobody can automate:
+Delete `check.py` from your thinking and read your own README instead. It is the one
+question in this brief that no script can answer:
 
 > **Could somebody else pick this up in six months, starting from your README?**
 
@@ -154,24 +162,24 @@ something, and the somebody else is usually you.
 
 ## On the way this course was built
 
-Half a page, because you have earned an explanation of what has been done to you for
-twenty-six modules.
+Half a page on the rules this material was written under.
 
-**Nothing in this material was asserted if it could be measured.** Every number in
-every expected output came from running the code, not from reasoning about it — and
-the drafts were wrong often enough to make that a rule rather than a preference. A
-claim that `latin-1` never raises turned out to be true for reading and false for
-writing. A claim that a decorator works by replacing the function turned out to be
-backwards for the case that mattered. A test in module 15 shipped green because the
-broken code it was meant to catch passed by construction, which is the module's own
-subject. Each of those was found by running the thing, and each is still in the
-material with the measurement next to it.
+**Nothing in this material was asserted if it could be measured.** Every number in every
+expected output came from running the code, not from reasoning about it — and the drafts
+were wrong often enough to make that a rule rather than a preference. A claim that `latin-1`
+never raises turned out to be true for reading and false for writing. A claim that a
+decorator replaces the function held for a wrapper like `@loud` and was false for
+`@app.route`, which registers the function and hands it back unchanged. A test in module 15
+shipped green because the broken code it was meant to catch passed by construction, which is
+the module's own subject. Each of those was found by running the thing, and each is still in
+the material with the measurement next to it.
 
-That is not thoroughness for its own sake. **It is the only reliable way to tell your
-model of a system from the system**, and the gap between the two is where every bug
-you will spend next year on lives. Python makes the check cheap: an interpreter, four
-lines, an answer. A language that makes it cheap and a habit that skips it anyway is
-the worst combination available.
+
+That is not thoroughness for its own sake. **It is the only reliable way to tell your model
+of a system from the system.** Python makes the check cheap: an interpreter, four lines, an
+answer. A language that makes it cheap and a habit that skips it anyway is the worst
+combination available.
+
 
 **The second thing, which follows from the first:** the tools in this course do not
 agree with each other, and the disagreements were not smoothed over. `latin-1` decodes
@@ -183,12 +191,13 @@ those is a mistake by the people who wrote them.** They are different answers to
 "what should happen when I cannot be sure", and the whole of engineering judgement is
 knowing which answer you are standing in.
 
-**And the third.** The material says "measured" a great deal and "obviously" not once,
-and that is deliberate. There is no sentence in twenty-six modules telling you that
-something is easy, and none telling you not to worry. You have four semesters of C and
-Java behind you and a job; what was new here was Python, and treating it as anything
-more than that would have wasted your time. If some of it was too long, you were meant
-to skip it — that was the arrangement from module 00, and skipping is not cheating.
+**And the third.** The material says "measured" a great deal and "obviously" not once, and
+that is deliberate. None of the twenty-six modules tells you that a task will be easy, and
+none tells you not to worry. You have four semesters of C and Java behind you and a job;
+what was new here was Python, and treating it as anything more than that would have wasted
+your time. If some of it was too long, you were meant to skip it — that was the arrangement
+from module 00.
+
 
 What is left is not more Python. It is the habit: **when you do not know, measure — and
 when you do know, measure anyway, because knowing has been wrong before.**
