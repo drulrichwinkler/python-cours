@@ -141,7 +141,9 @@ asserted.
 
 ### Part 6 — Final project · module 26
 
-Everything at once, built on your own.
+Everything at once, built on your own. No exercises and no solutions: a brief, two
+sensor logs from two systems that do not agree with each other, and twenty-four
+acceptance criteria you check yourself with `uv run 26_project/check.py`.
 
 **One thread runs through all of it:** a sensor log file. It gets read (08), tested (15), fetched
 over HTTP (16), analysed with pandas (18), stored in SQLite (19) — and then displayed five times
@@ -177,7 +179,7 @@ over: as a web page, a data app, an API, a desktop window and a terminal interfa
 | 23 FastAPI       | ✅ complete |
 | 24 Tkinter       | ✅ complete |
 | 25 Textual       | ✅ complete |
-| 26 Final project | ⬜ planned  |
+| 26 Final project | ✅ complete |
 
 Modules are added in order. If something in an existing one is wrong, unclear or simply
 annoying, open an issue — that is the fastest way for the course to get better.

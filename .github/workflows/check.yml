@@ -61,6 +61,13 @@ jobs:
       - name: Format
         run: uv run ruff format --check .
 
+      # Module 26 states twenty-four acceptance criteria, and criteria nobody has
+      # satisfied might be unsatisfiable. demos/26_reference is the implementation the
+      # numbers in the brief were measured from; if this goes red the brief is wrong
+      # and not the student.
+      - name: Module 26's criteria are satisfiable
+        run: uv run 26_project/check.py demos/26_reference
+
       # Every notebook must run top to bottom -- explore and selfcheck alike.
       # Cells that fail on purpose carry the `raises-exception` tag.
       - name: Notebooks

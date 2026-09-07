@@ -1,0 +1,42 @@
+{
+  "TH-01": {
+    "location": "Hall",
+    "unit": "C",
+    "limit": 30.0
+  },
+  "TH-02": {
+    "location": "Hall",
+    "unit": "C",
+    "limit": 30.0
+  },
+  "TH-03": {
+    "location": "Office",
+    "unit": "C",
+    "limit": 26.0
+  },
+  "TH-04": {
+    "location": "Test rig",
+    "unit": "C",
+    "limit": 85.0
+  },
+  "TH-05": {
+    "location": "Test rig",
+    "unit": "C",
+    "limit": 85.0
+  },
+  "PR-01": {
+    "location": "Test rig",
+    "unit": "F",
+    "limit": 85.0
+  },
+  "PR-02": {
+    "location": "Kiln",
+    "unit": "F",
+    "limit": 200.0
+  },
+  "TH-99": {
+    "location": "Store",
+    "unit": "C",
+    "limit": 30.0
+  }
+}
