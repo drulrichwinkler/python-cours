@@ -54,10 +54,12 @@ for tag in readings:
 
 a) `.keys()` gives a view rather than a copy. Name what that buys and what it costs,
    and say how you would take a snapshot when you want one.
-b) The `RuntimeError` is Python's version of Java's
-   `ConcurrentModificationException`, and `Map.keySet()` is a view in Java too. Say
-   why both languages arrived at the same answer — what would the alternative have
-   to do?
+b) `Map.keySet()` is a view in Java too, and its iterators are fail-fast: they throw
+   `ConcurrentModificationException`. Say why both languages refuse — what would the
+   alternative have to do? Then read the last two lines of section 3 in
+   `explore.ipynb`, where the same code raises on a three-entry dict and gets away
+   with it on a five-entry one. What follows for how much you may lean on the
+   exception, and what does Java's javadoc say about its own version?
 c) Replacing the value of a key that already exists during the loop is allowed;
    adding one is not, and neither is removing one key and adding another in the same
    pass — that last one keeps the count and still raises, with a different message.
@@ -67,6 +69,7 @@ c) Replacing the value of a key that already exists during the loop is allowed;
 > move an entry it has not reached yet, and which one leaves every entry where it is?
 
 **Check yourself:** your answer to (b) has to say what the language would have to
-give up to make the loop safe instead of loud.
+give up to make the loop safe instead of loud — and has to distinguish "the loop
+raises" from "the loop is checked".
 
 The written-out answers are in `solutions/solution_07.md` and `solution_08.md`.

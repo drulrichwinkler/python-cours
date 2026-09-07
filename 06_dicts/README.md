@@ -16,16 +16,16 @@ then spends its time on the thing that answer makes possible.
   where the limit is.
 - **Iterating a dict yields keys**, not entries. `for tag, value in d.items()` is module 05's
   unpacking arriving in the place you will use it every day.
-- **`.keys()` and `.values()` are live views**, not copies — and changing the size of a dict
-  while iterating it raises `RuntimeError`. Java's `keySet()` and
-  `ConcurrentModificationException` work the same way; this is one of the places the two
-  languages agree, and it is worth knowing which those are.
+- **`.keys()` and `.values()` are live views**, not copies — and changing which keys a dict has
+  while iterating it usually raises `RuntimeError`. *Usually*: the check is best-effort, and
+  `explore.ipynb` shows the same code getting away with it on a larger dict. Java's `keySet()`
+  is a view too and its iterators are fail-fast, with a javadoc that says in as many words not
+  to depend on the exception. Same shape of answer in both languages, and the same caveat.
 - **Insertion order is kept** — a guarantee since Python 3.7, and narrower than it sounds.
 - **Counting and grouping** with `d.get(key, 0) + 1` and `d.setdefault(key, []).append(...)`,
   because `d[key] += 1` on a key that is not there raises `KeyError`.
 - **Sets**: no duplicates, no order at all, and membership as the point. A set of strings can
-  print in one order now and another after a restart, which is the clearest demonstration
-  available that there is nothing to rely on.
+  print in one order now and another after a restart; there is nothing there to rely on.
 
 ## What you can do afterwards
 

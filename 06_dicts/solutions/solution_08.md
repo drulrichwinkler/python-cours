@@ -23,11 +23,14 @@ a key and the entry the loop was about to reach may no longer be where it was. E
 way the position stops meaning what it meant, and entries can be skipped or seen
 twice.
 
-The check is on the keys, not on the count, and the two cases have their own
-messages: `dictionary changed size during iteration` when the number of entries
-changed, `dictionary keys changed during iteration` when one key was removed and
-another added in the same pass. Replacing the value of an existing key touches
-neither and is allowed.
+What the check actually is, measured rather than assumed: the loop compares the
+dict's size against the size it saw at the start, which catches an add or a delete
+immediately — `dictionary changed size during iteration`. A delete and an add in the
+same pass leave the size alone and get past that comparison. A second check catches
+some of those and reports `dictionary keys changed during iteration`; on a larger
+dict it catches nothing at all, the loop finishes without complaint, and a key it
+should have visited is silently missing from the walk. Replacing the value of an
+existing key touches none of this and is allowed.
 
 The alternative is what the concurrent collections do: iterate over a snapshot, or
 keep the old table alive until every iteration over it has finished. Both cost memory
@@ -41,6 +44,12 @@ Which is the answer to "why the same answer twice": it is not a shared style, it
 the same constraint. The languages that do let you do it are the ones that paid for
 it somewhere else.
 
+And both stop short of promising it. Java's javadoc calls fail-fast behaviour
+best-effort and says it would be wrong to write a program that depends on the
+exception; Python makes no promise either, as the five-entry dict in section 3
+demonstrates. The exception is there to find your bug, not to make the operation
+safe.
+
 **c) Replacing against adding**
 
 `readings[tag] = 99.9` on a key that is already there writes into the slot that key
@@ -50,9 +59,9 @@ position still means what it meant.
 Adding a key needs a slot that is not in use, and can push the dict past the point
 where it grows the table and moves everything. Deleting one takes an entry out from
 under a loop that has not reached it yet. Both change the answer to "which keys are
-there", which is what the loop was told at the start — so both are refused, and a
-swap that keeps the count is refused too, with the message that names keys rather
-than size.
+there", which is what the loop was told at the start, and both are caught by the size
+comparison. A swap that keeps the count slips past that comparison — sometimes into
+the second check, sometimes into no check at all.
 
 Hence the standard move when a loop has to add or delete: iterate over a snapshot,
 `for tag in list(readings):`, and leave the dict free to change underneath.

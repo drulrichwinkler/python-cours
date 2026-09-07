@@ -17,7 +17,8 @@ Expected output:
     False
 
 Hint: `&` `-` `^` `|` and `<=`. Print sets through `sorted()`: a set has no order,
-and a set of strings really does print differently from one run to the next.
+and a set of strings usually prints in a different arrangement from one run to the
+next.
 """
 
 today = {"TH-01", "TH-04", "TH-09", "TH-12"}

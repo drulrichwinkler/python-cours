@@ -32,15 +32,16 @@ deliberately, in one place, which is what `@dataclass` and module 12 are for.
 
 **c) When each fails**
 
-`sensor.untit` fails **when the file is read** — by the editor as you type, by
-`mypy` in the build, and at import time in the sense that the attribute simply is not
-there on a class that declares its fields. `sensor["untit"]` fails **when that line
-runs**, which may be the error branch that fires once a week.
+`sensor.untit` fails **when the file is read** — by the editor as you type and by
+`mypy` in the build. At runtime it fails no earlier than the dict version does:
+`AttributeError` on the line that runs, in the same place the `KeyError` would have
+been. Python checks no attribute access at import time.
 
-On a program running for a week, that is the whole difference. The dict version puts
-the mistake in the one code path nobody exercised, at 3 a.m., in a `KeyError` whose
-message is a misspelled string. A tool that never runs the program finds the first
-kind and, for a plain dict, has nothing to look at in the second but a string.
+So the whole gain is static: a tool that never runs the program finds the first kind
+and, for a plain dict, has nothing to look at in the second but a string. On a program
+running for a week that is exactly the difference that matters, because the mistake
+otherwise sits in the one code path nobody exercised, fires at 3 a.m., and arrives as
+a `KeyError` whose message is a misspelled word.
 
 One qualification, because it is the answer to "then why not always a class":
 `typing.TypedDict` declares which keys a dict has, and `mypy` then reports
