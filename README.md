@@ -174,7 +174,8 @@ over: as a web page, a data app, an API, a desktop window and a terminal interfa
 | 20 Processes, ports | ✅ complete |
 | 21 Flask         | ✅ complete |
 | 22 Streamlit     | ✅ complete |
-| 23–26            | ⬜ planned  |
+| 23 FastAPI       | ✅ complete |
+| 24–26            | ⬜ planned  |
 
 Modules are added in order. If something in an existing one is wrong, unclear or simply
 annoying, open an issue — that is the fastest way for the course to get better.
