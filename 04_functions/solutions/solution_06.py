@@ -3,10 +3,12 @@
 `sorted(seq, key=f)` calls f on every item and sorts by the results. The function
 is passed as a value -- not called, so no brackets after its name.
 
-`by_reading` and the lambda are the same object in different clothes. Give it a
-name when the name explains something ("by reading"), use a lambda when it does
-not. `reverse=True` beats sorting and then reversing: one pass instead of two, and
-it stays stable for equal keys.
+`by_reading` and `lambda entry: entry[1]` do the same job; the lambda is the
+expression form, without a name and without a docstring. Give it a name when the
+name explains something ("by reading"), use a lambda when it does not.
+
+`reverse=True` beats sorting and then reversing: one pass instead of two, and it
+stays stable for equal keys.
 """
 
 log = [("TH-04", 91.0), ("TH-01", 21.7), ("TH-09", 23.1)]

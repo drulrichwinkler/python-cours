@@ -1,9 +1,7 @@
 """Solution 01 -- A function with a docstring and a default.
 
-Note that it returns rather than prints. A function that prints can only ever be
-used one way; a function that returns can be printed, joined, tested or written to
-a file -- which is why every test in this course calls something and inspects what
-came back.
+It returns rather than prints -- which is what every test in this course checks:
+it calls something and inspects what came back.
 """
 
 

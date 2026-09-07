@@ -19,7 +19,8 @@ differently, and one trap that catches everybody once.
 - **Arguments are references.** Mutating what you were handed is visible to the caller; rebinding
   the parameter is not.
 - **No block scope, and `nonlocal`.** A closure captures the variable, not its value — Java's
-  effectively-final restriction removed, with what follows from that.
+  effectively-final restriction removed. That is what lets a closure accumulate without a wrapper
+  object, and what makes closures built in a loop share one variable.
 - **Functions are values.** `key=` is the everyday use; decorators in module 14 are the next step.
 
 ## What you can do afterwards
@@ -33,7 +34,7 @@ differently, and one trap that catches everybody once.
 
 ## Order of work
 
-0. **`selfcheck.ipynb`** — six statements, two minutes. All `True` means skip the module.
+0. **`selfcheck.ipynb`** — six statements. All `True` means skip the module.
 1. **`explore.ipynb`** — the predictions
 2. **`exercises/`** — seven files to fill in, two to think through in `thinking.md`
 3. **`uv run pytest 04_functions`**

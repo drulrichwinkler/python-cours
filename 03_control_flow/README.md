@@ -26,7 +26,7 @@ places where Python parts company:
 
 ## Order of work
 
-0. **`selfcheck.ipynb`** — six statements, two minutes. All `True` means skip the module.
+0. **`selfcheck.ipynb`** — six statements. All `True` means skip the module.
 1. **`explore.ipynb`** — the predictions
 2. **`exercises/`** — seven files to fill in, two to think through in `thinking.md`
 3. **`uv run pytest 03_control_flow`**

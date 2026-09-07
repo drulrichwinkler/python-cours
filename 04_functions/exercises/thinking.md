@@ -20,8 +20,10 @@ Python has one name and one function.
 a) Write the single Python signature that covers all three calls.
 b) Java also lets you overload on *type*: `area(int)` and `area(Rectangle)`.
    How would you write that in Python, and what do you lose?
-c) `def area(side)` followed by `def area(width, height)` is not an error and
-   produces no warning. Why does that follow from what a `def` actually is?
+c) `def area(side)` followed by `def area(width, height)` is not an error --
+   Python binds the name a second time and says nothing. (The linter does object:
+   `F811`, which is why `exercise_02.py` carries a `# noqa` on that line.) Why
+   does the silence follow from what a `def` actually is?
 
 > **Hint on (b):** there is more than one answer — a check inside the body,
 > `functools.singledispatch`, or not writing it that way at all. Say which you

@@ -7,7 +7,8 @@ Replace each `...` with the value you expect, then run the file.
 Nothing printed means every prediction was right.
 
 All four are places where Python differs from C or Java: what a second def does,
-when a default is evaluated, what a caller sees, and what a bare return gives.
+when a default is evaluated, what a caller sees, and what a function that falls
+off the end gives.
 
 There is no "Expected output" section here: what is checked is your prediction.
 """
@@ -32,7 +33,7 @@ assert outcome == ...
 
 
 # TODO: the default is one object, shared by every call that omits it
-def collect(item, bucket=[]):  # noqa: B006 -- the trap is the exercise
+def collect(item, bucket=[]):  # a mutable default -- the trap is the exercise
     bucket.append(item)
     return bucket
 

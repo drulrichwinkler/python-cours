@@ -6,8 +6,7 @@ round, and `factor` can never be filled by accident from a positional argument
 that was meant for something else.
 
 The rule of thumb: make a parameter keyword-only when its meaning is not obvious
-from the call site. `scale(21.7, 1.8)` says nothing; `scale(21.7, factor=1.8)`
-says everything.
+from the call site.
 """
 
 

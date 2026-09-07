@@ -28,7 +28,7 @@ except TypeError:
 assert outcome == "TypeError"
 
 
-def collect(item, bucket=[]):  # noqa: B006 -- the trap is the exercise
+def collect(item, bucket=[]):  # a mutable default -- the trap is the exercise
     bucket.append(item)
     return bucket
 

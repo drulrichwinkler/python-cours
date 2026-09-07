@@ -13,7 +13,7 @@ the call site.
 
 **b) Overloading on type**
 
-Three honest answers, in the order you should consider them:
+Three answers, in the order you should consider them:
 
 1. **Do not.** If a function has to ask what type it was handed, that is usually
    two functions wearing one name. `describe_reading` and `describe_range` cost

@@ -12,8 +12,8 @@ pace, and the machine tells you whether it is right.
 on one tiny example.
 
 **Already know some of this?** Every module has a `selfcheck.ipynb`: six statements to mark
-`True` or `False`, and a verdict on whether the module has anything for you. Two minutes, and
-the cheapest way to skip what you can already do.
+`True` or `False`, and a verdict on whether the module has anything for you — the cheapest
+way to skip what you can already do.
 
 ---
 
