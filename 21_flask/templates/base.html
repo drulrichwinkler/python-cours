@@ -1,0 +1,21 @@
+{# The page every other template fills in. Jinja2 calls this inheritance, and it
+   is why there is one copy of the <head> rather than four. #}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>{% block title %}Sensors{% endblock %}</title>
+  <style>
+    body { font-family: system-ui, sans-serif; margin: 2rem; max-width: 50rem; }
+    table { border-collapse: collapse; }
+    th, td { padding: 0.3rem 0.8rem; text-align: right; border-bottom: 1px solid #ddd; }
+    th:first-child, td:first-child { text-align: left; }
+    .fault { color: #b00; font-weight: bold; }
+    nav a { margin-right: 1rem; }
+  </style>
+</head>
+<body>
+  <nav><a href="{{ url_for('index') }}">summary</a><a href="{{ url_for('search', above=85) }}">search</a></nav>
+  {% block content %}{% endblock %}
+</body>
+</html>

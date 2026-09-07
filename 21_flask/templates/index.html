@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block title %}Sensor summary{% endblock %}
+
+{% block content %}
+<h1>Sensor summary</h1>
+<p>A reading above {{ limit }} °C counts as a fault.</p>
+
+<table>
+  <tr><th>Location</th><th>Readings</th><th>Usable</th><th>Mean</th><th>Highest</th><th>Faults</th></tr>
+  {% for s in summaries %}
+  <tr>
+    {# url_for names the ROUTE FUNCTION, not the path: rename the URL and this
+       still works. Never build a link by joining strings. #}
+    <td><a href="{{ url_for('location', name=s.location) }}">{{ s.location }}</a></td>
+    <td>{{ s.readings }}</td>
+    <td>{{ s.usable }}</td>
+    {# `is not none` rather than |default: the default filter only replaces an
+       UNDEFINED value, and None is defined. #}
+    <td>{{ "%.2f"|format(s.mean) if s.mean is not none else "--" }}</td>
+    <td>{{ s.highest if s.highest is not none else "--" }}</td>
+    <td class="{{ 'fault' if s.faults else '' }}">{{ s.faults }}</td>
+  </tr>
+  {% endfor %}
+</table>
+
+<h2>Faults</h2>
+{% if faults %}
+<ul>
+  {% for r in faults %}<li>{{ r.tag }} — {{ r.value }} {{ r.unit }} at {{ r.at }}</li>{% endfor %}
+</ul>
+{% else %}
+<p>None.</p>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}Search{% endblock %}
+
+{% block content %}
+<h1>Readings above a limit</h1>
+<form action="{{ url_for('search') }}" method="get">
+  <label>above <input type="text" name="above" value="{{ above if above is not none else '' }}"></label>
+  <button type="submit">show</button>
+</form>
+
+{% if above is none %}
+<p>Type a number.</p>
+{% else %}
+<p>{{ readings|length }} readings above {{ above }}.</p>
+<ul>
+  {% for r in readings %}<li>{{ r.tag }} — {{ r.value }} ({{ r.location }})</li>{% endfor %}
+</ul>
+{% endif %}
+{% endblock %}
