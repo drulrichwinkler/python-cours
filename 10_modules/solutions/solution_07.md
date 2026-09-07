@@ -12,9 +12,10 @@
 
 The assumption behind each: the first is "this file is a program, run it"; the second
 is "this is a module inside a package that is importable from here". That is why only
-the second form can do a relative import — a file run by path has no parent package,
-and `from ..reader import read` raises `ImportError: attempted relative import with no
-known parent package`.
+the second form can do a relative import. `from .helpers import read` inside
+`tool/show.py` works under `python -m tool.show` and raises `ImportError: attempted
+relative import with no known parent package` under `python tool/show.py` — a file
+run by path has no parent package for the dot to refer to.
 
 **b) The colleague's script**
 
@@ -45,8 +46,8 @@ on `sys.path`.
 A third, milder one: it only fixes the process that runs that file. Anything else
 importing your package still cannot find it.
 
-What replaces it: **an installed package.** A `pyproject.toml`, the code under
-`src/`, and `uv sync` — after which the package is in the environment, importable
-from anywhere, by every tool, with no line at the top of any file. In this course
-that is exactly what `course/` is: `pyproject.toml` lists it, and every test file
-writes `from course.checks import assert_output` without touching `sys.path`.
+What replaces it: **an installed package.** A `pyproject.toml` naming the package,
+and `uv sync` — after which it is in the environment, importable from anywhere, by
+every tool, with no line at the top of any file. In this course that is exactly what
+`course/` is: the root `pyproject.toml` lists it, and every test file imports from
+`course.checks` without touching `sys.path`.

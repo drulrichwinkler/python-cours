@@ -8,7 +8,7 @@ Write `build_parser()` returning an `argparse.ArgumentParser` with
   - `--verbose`, a flag that is True when present and False when not
 
 Then parse three argument lists and print what comes back, as below. The third one
-is invalid, and what it does is the thing worth remembering.
+is invalid.
 
 Expected output:
 

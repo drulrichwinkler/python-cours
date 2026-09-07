@@ -21,8 +21,8 @@ somebody else.
   cases have to be told apart. Java's `public static void main` is a declaration; this is a
   runtime check on a string.
 - **A package is a folder**, and `__init__.py` is the file that runs when it is first imported.
-  Java requires the `package` line in the file to match the directory; Python has no such line —
-  the position on `sys.path` is the whole truth.
+  A Java file declares the `package` it belongs to, and that declaration has to match the
+  directory; Python has no such line — the position on `sys.path` is the whole truth.
 - **A project is a `pyproject.toml`, a `src/` folder and a lock file.** `uv init`, `uv add`,
   `uv sync`, `uv run` — and `[project.scripts]`, which is how a function becomes a command.
 
@@ -47,13 +47,14 @@ which is where the standard library gets its introduction.
 
 `sensorlib/` in this folder is a real package, and the exercises import from it.
 
-## The line at the top of every exercise here
+## The line at the top of the exercises that use `sensorlib`
 
 ```python
 sys.path.insert(0, str(MODULE))   # so that `import sensorlib` finds it
 ```
 
-That line is in the exercises because they are run as scripts from a folder that is not the one
-`sensorlib` lives in. It is also exactly what you should **not** have to write in a real project
-— section 7 shows what replaces it, which is an installed package and one entry in
-`pyproject.toml`. Seeing the manual version first is the point: `uv sync` is not magic either.
+That line is in four of the seven exercises, because they are run as scripts from a folder that
+is not the one `sensorlib` lives in. It is also exactly what you should **not** have to write in
+a real project — section 7 shows what replaces it, which is an installed package and one entry
+in `pyproject.toml`. Seeing the manual version first is the point: section 7 replaces that line,
+it does not hide it.

@@ -2,8 +2,8 @@
 
 DEFAULT_HIGH = 85.0
 
-# Printed once, when this module is first imported -- and not again, however many
-# times it is imported after that. Import is a one-off; the result is cached.
+# Printed when this module is first imported, and not again: import runs the file
+# once and caches the module object in sys.modules.
 print("[sensorlib.limits imported]")
 
 

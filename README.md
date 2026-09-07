@@ -152,7 +152,8 @@ over: as a web page, a data app, an API, a desktop window and a terminal interfa
 | 09 Errors, with, logging | ✅ complete |
 | 10 Modules, packages | ✅ complete |
 | 11 Classes       | ✅ complete |
-| 12–26            | ⬜ planned  |
+| 12 Inheritance, dataclass | ✅ complete |
+| 13–26            | ⬜ planned  |
 
 Modules are added in order. If something in an existing one is wrong, unclear or simply
 annoying, open an issue — that is the fastest way for the course to get better.

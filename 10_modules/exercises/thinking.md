@@ -17,7 +17,7 @@ a) Explain what each of the two puts on `sys.path`, and why the difference exist
 b) A colleague's script imports a sibling package. It works when they run it from
    the project root with `-m` and fails with `ModuleNotFoundError` when they run it
    by its path from the same directory. Walk through what happens in both cases.
-c) The exercises in this module all start with `sys.path.insert(0, str(MODULE))`.
+c) The `sensorlib` exercises in this module start with `sys.path.insert(0, str(MODULE))`.
    Name two things that go wrong with that line in a real project, and say what
    replaces it.
 
